@@ -13,4 +13,4 @@ def write(file_name, key, inhalt):
         json_str = dumps(json_inhalt, indent=4)
     with open_file.write(json_str)
 
-print("hallo. ich bin die datenbank.py {")
+print("hallo. ich bin die datenbank.py")
