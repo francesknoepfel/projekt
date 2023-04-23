@@ -3,13 +3,41 @@ from flask import render_template
 
 app = Flask(__name__)
 
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+#Noch Tasks richtig definieren mit Kategorie etc.)
+tasks = [    {'name': 'Task 1', 'deadline': '2023-05-01', 'priority': 'High'},    {'name': 'Task 2', 'deadline': '2023-05-05', 'priority': 'Medium'},    {'name': 'Task 3', 'deadline': '2023-05-10', 'priority': 'Low'}]
+tasks.append({'name': 'Task 4', 'deadline': '2023-05-15', 'priority': 'High'})
+
+
 @app.route("/")
-def index():
-    tasks = ['task 1', 'task 2', 'task 3']
-    return render_template('index.html', tasks=tasks)
+def start():
+    ueberschrifts_text = 'Willkommen zu deiner To Do Listen Übersicht'
+    einleitungs_text = "Hier kannst du deine persönlichen Tasks sowie Listen erfassen, um einen Überblick zu behalten. " \
+                       "Du kannst deine Tasks auch priorisieren und mit Datum und Zeit aufnehmen, damit du genau siehst, " \
+                       "was als Nächstes ansteht. Zudem kannst du aus eigenen oder schon bestehenden Kategorien aussuchen, " \
+                       "um deine Tasks zu ordnen. Viel Erfolg!"
+    taskerstellen_text = "Möchtest du einen neuen Task erstellen?"
+    return render_template('index.html', app_name="To Do List", tasks=tasks,
+                           ueberschrift=ueberschrifts_text, einleitung=einleitungs_text,
+                           taskerstellen=taskerstellen_text)
 
 # Neue Liste
+@app.route('/eingabe', methods=["POST", "GET"])  #
+def eingabe_formular():  #
+    if request.method == "POST":  #
+        kategorie = request.form["kategorie"]  # Kategorie ist der key
+        prioritaet = request.form["prioritaet"]   # Priorität ist der key
+        deadline = request.form ['deadline']  # request.from bedeutet woher wir was anfragen
+        speichern(aktivitaet, dauer, kategorie)  # Wurde so in Daten als def speichern def definiert
+
     # Eingabe Listenname
+    @app.route('/form')
+    def form():
+        return render_template('form.html')
+
     # Task hinzufügen --> Ja oder Skip (bei Ja zu "Neuer Task")
 # Neuer Task
     # Eingabe Taskname

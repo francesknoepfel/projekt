@@ -16,19 +16,44 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>My To-Do List</h1>
-        <!-- Add your Python-generated content here -->
-    </div>
+    <h1>{{ ueberschrift }}</h1>
+    <p>{{ einleitung }}</p>
+    <h2>{{ taskerstellen }}</h2>
+    <ul>
+      {% for task in tasks %}
+      <li>{{ task }}</li>
+      {% endfor %}
+    </ul>
 
-<div class="container">
-    <h1>My To-Do List</h1>
-    <ul class="list-group">
-        {% for task in tasks %}
-            <li class="list-group-item">{{ task }}</li>
-        {% endfor %}
-    </ul
+    # Neue Liste
+    <button id="myButton" class="btn btn-primary" onclick="alert('Button clicked!')">Neue Liste </button>
+
+# Eingabe Listenname
+    # Task hinzufügen --> Ja oder Skip (bei Ja zu "Neuer Task")
+# Neuer Task
+    <button id="myButton" class="btn btn-primary" onclick="alert('Button clicked!')">Neuer Task </button>
+    # Eingabe Taskname
+<script>
+function openForm() {
+  window.location.href = '/form';
+}
+</script>
+    # Enddatum / Zeit festlegen
+    # Prioriät festlegen
+    # Kategorie definieren
+    # Neue Kategorie erstellen? --> Skip oder Ja Neue Kategorie erstellen
+    # Zu bestehender Liste hinzufügen? --> Skip oder Ja
+# Zeige Prioritäten
+    <button id="myButton" class="btn btn-primary" onclick="alert('Button clicked!')">Zeige Prioritäten </button>
+    # Sortieren nach ... --> Ja oder Skip
+    # Eingabe Kategoire/DatumZeit
+    # Task hinzufügen --> Ja oder Skip (bei Ja zu "Neuer Task")
+
+
 
 </body>
 </html>
+
+
+
 
