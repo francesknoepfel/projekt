@@ -50,6 +50,36 @@ function openForm() {
     # Task hinzufügen --> Ja oder Skip (bei Ja zu "Neuer Task")
 
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item">{{ task }}</li>
+            {% endfor %}
+        </ul>
+        <form method="post" action="/">
+            <div class="form-group">
+                <label for="task">New Task:</label>
+                <input type="text" class="form-control" id="task" name="task" placeholder="Enter task">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
 
 </body>
 </html>

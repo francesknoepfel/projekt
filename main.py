@@ -11,6 +11,19 @@ app = Flask(__name__)
 tasks = [    {'name': 'Task 1', 'deadline': '2023-05-01', 'priority': 'High'},    {'name': 'Task 2', 'deadline': '2023-05-05', 'priority': 'Medium'},    {'name': 'Task 3', 'deadline': '2023-05-10', 'priority': 'Low'}]
 tasks.append({'name': 'Task 4', 'deadline': '2023-05-15', 'priority': 'High'})
 
+# The to-do list page route
+@app.route('/')
+def todo_list():
+    tasks = [] # Empty list of tasks for now
+    return render_template('todo.html', tasks=tasks)
+
+# The route for adding a new task
+@app.route('/', methods=['POST'])
+def add_task():
+    task = {'name': request.form['task'], 'deadline': request.form['deadline'], 'priority': request.form['priority']}
+    tasks.append(task)
+    return render_template('todo.html', tasks=tasks)
+
 
 @app.route("/")
 def start():
@@ -55,5 +68,6 @@ def eingabe_formular():  #
 
 if __name__ == "__main__":
         app.run(debug=True, port=5001)
+
 
 
