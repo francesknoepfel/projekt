@@ -18,6 +18,7 @@ def todo_list():
     return render_template('todo.html', tasks=tasks)
 
 # The route for adding a new task
+# Dieser Code geht davon aus, dass der User den Task name, die deadline und die Priorität als Formularfelder eingibt.
 @app.route('/', methods=['POST'])
 def add_task():
     task = {'name': request.form['task'], 'deadline': request.form['deadline'], 'priority': request.form['priority']}
