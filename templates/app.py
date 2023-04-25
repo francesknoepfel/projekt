@@ -1,3 +1,3 @@
-@app.route("/todolist")
-def todolist():
-    todolist
+@app.route("/todo_list")
+def todo_list():
+    todo_list
