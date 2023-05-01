@@ -1,3 +1,4 @@
+# Maybe delete if unnötig
 from json import dumps, loads
 
 def read(file_name):

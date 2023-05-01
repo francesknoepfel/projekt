@@ -1,46 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
+    <title>Task Manager</title>
     <meta charset="UTF-8">
-    <title>My To-Do List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-    <h1>{{ ueberschrift }}</h1>
-    <p>{{ einleitung }}</p>
-    <h2>{{ taskerstellen }}</h2>
-    <ul>
-      {% for task in tasks %}
-      <li>{{ task }}</li>
-      {% endfor %}
-    </ul>
-
-    <a href="/form" class="btn btn-primary">Neue Liste</a>
-
-    <a href="/new-task" class="btn btn-primary">Neuer Task</a>
-
-    <a href="/prio" class="btn btn-primary">Zeige Prioritäten</a>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZEQ6Mvuo+Oo9wXaBh/3Mq"
+      crossorigin="anonymous">
+  </head>
+  <body>
     <div class="container">
-        <h1>To-Do List</h1>
-        <ul class="list-group">
-            {% for task in tasks %}
-            <li class="list-group-item">{{ task }}</li>
+      <h1>Task Manager</h1>
+      <hr>
+      <h2>Add Task</h2>
+      <form action="/add_task" method="POST">
+        <div class="form-group">
+          <label for="task_name">Name</label>
+          <input type="text" class="form-control" id="task_name" name="task_name" required>
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline</label>
+          <input type="date" class="form-control" id="deadline" name="deadline" required>
+        </div>
+        <div class="form-group">
+          <label for="priority">Priority</label>
+          <select class="form-control" id="priority" name="priority" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="list_name">List Name</label>
+          <select class="form-control" id="list_name" name="list_name" required>
+            {% for list in lists %}
+            <option value="{{ list.name }}">{{ list.name }}</option>
             {% endfor %}
-        </ul>
-        <form method="post" action="/">
-            <div class="form-group">
-                <label for="task">New Task:</label>
-                <input type="text" class="form-control" id="task" name="task" placeholder="Enter task">
-            </div>
-            <button type="submit" class="btn btn-primary">Add Task</button>
-        </form>
-    </div>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Task</button>
+      </form>
+      <hr>
+      <h2>Add List</h2>
+      <form action="/add_list" method="POST">
+        <div class="form-group">
+          <label for="list_name">Name</label>
+          <input type="text" class="form-control" id="list_name" name="list_name" required>
+        </div>
+        <div class="form-group">
+          <label for="list_description">Description</label>
+          <textarea class="form-control" id="list_description" name="list_description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add List</button>
+      </form>
+      <hr>
+      <h2>Tasks</h2>
+      <form action="/sort_priority" method="POST">
+        <button type="submit" class="btn btn-primary">Sort by Priority</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+            <th>List</th>
+          </tr>
+        </thead>
+        <tbody>
 
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+          <tr
