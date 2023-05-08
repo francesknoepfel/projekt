@@ -1,1 +1,12 @@
-{"task": "Clean", "deadline": "6. Mai 2023"}
+[
+    {
+        "task": "Clean",
+        "deadline": "Juni",
+        "priority": "High"
+    },
+    {
+        "task": "Hausaufgaben",
+        "deadline": "August",
+        "priority": "Tief"
+    }
+]

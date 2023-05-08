@@ -1,0 +1,16 @@
+neue_liste = {
+    "name": "Bis Ende Mai",
+    "tasks":
+    [
+        {
+            "task": "Clean",
+            "deadline": "Juni",
+            "priority": "High"
+        },
+        {
+            "task": "Hausaufgaben",
+            "deadline": "August",
+            "priority": "Tief"
+        }
+    ]
+}

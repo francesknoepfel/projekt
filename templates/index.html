@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Task Manager</title>
+    <title>Tick Task </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZEQ6Mvuo+Oo9wXaBh/3Mq"
       crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   </head>
   <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Tick Task</a>
+    </nav>
     <div class="container">
-      <h1>Task Manager</h1>
+      <h1>Tick Task</h1>
       <hr>
-      <h2>Add Task</h2>
+      <h2>Neuer Task</h2>
       <form action="/add_task" method="POST">
         <div class="form-group">
           <label for="task_name">Name</label>
@@ -25,9 +31,9 @@
         <div class="form-group">
           <label for="priority">Priority</label>
           <select class="form-control" id="priority" name="priority" required>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+            <option value="High">Hoch</option>
+            <option value="Medium">Mittel</option>
+            <option value="Low">Tief</option>
           </select>
         </div>
         <div class="form-group">
@@ -38,35 +44,39 @@
             {% endfor %}
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Add Task</button>
+        <button type="submit" class="btn btn-primary"> Task hinzufügen </button>
       </form>
       <hr>
-      <h2>Add List</h2>
+      <h2>Neue Liste </h2>
       <form action="/add_list" method="POST">
         <div class="form-group">
           <label for="list_name">Name</label>
           <input type="text" class="form-control" id="list_name" name="list_name" required>
         </div>
         <div class="form-group">
-          <label for="list_description">Description</label>
+          <label for="list_description">Beschreibung</label>
           <textarea class="form-control" id="list_description" name="list_description" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Add List</button>
+        <button type="submit" class="btn btn-primary">Liste hinzufügen</button>
       </form>
       <hr>
       <h2>Tasks</h2>
       <form action="/sort_priority" method="POST">
-        <button type="submit" class="btn btn-primary">Sort by Priority</button>
+        <button type="submit" class="btn btn-primary">Tasks nach Priorität sortieren </button>
       </form>
-      <table class="table">
+   <table class="table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Deadline</th>
-            <th>Priority</th>
-            <th>List</th>
+            <th>Priorität</th>
+            <th>Liste</th>
           </tr>
         </thead>
         <tbody>
-
-          <tr
+          <!-- table data goes here -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
