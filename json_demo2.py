@@ -13,16 +13,18 @@ def write_json(file_name, inhalt):
         open_file.write(json_str)
 
 
-listen = read_json('listen.json')
-print(listen)
+lists = read_json('lists.json')
+print(lists)
 kategorie = read_json('kategorie.json')
 print(kategorie)
 neue_kategorie = {
     "name": "Haushalt",
-    "tasks": "Putzen"
+    "tasks": "Ofen putzen, Wohnzimmer staubsaugen",
 }
-
 kategorie[neue_kategorie['name']] = neue_kategorie
-
-
-
+write_json('kategorie.json', kategorie)
+    json_inhalt = read_json(file_name)
+    
+    with open(file_name, "w", encoding="utf8") as open_file:
+        json_str = dumps(inhalt, indent=4)
+        open_file.write(json_str)

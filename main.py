@@ -1,4 +1,8 @@
+import random
+
 from flask import Flask, render_template, request
+
+from json_demo2 import write_json
 from json import loads, dumps
 
 
@@ -40,6 +44,21 @@ def sort_priority():
     return render_template('index.html', tasks=tasks_sorted, lists=lists)
 
 print(tasks)
+
+@app.route("/neue_kategorie", methods=["GET", "POST"])
+def neue_kategorie():
+    if request.method == "GET":
+        return render_template("neue_kategorie.html")
+
+    if request.method == "POST":
+        kategorie_name = request.form['kategorie_name']
+        priority = request.form['priority']
+        neue_kategorie = {
+            "name": kategorie_name,
+            "priority": priority
+        }
+        write_json('kategorie.json', neue_kategorie)
+        return "Kategorie wurde gespeichert"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
