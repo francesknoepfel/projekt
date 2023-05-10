@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Task 1",
+        "deadline": "2023-05-31",
+        "priority": "high",
+        "category": "Work"
+    },
+    {
+        "name": "Task 2",
+        "deadline": "2023-06-15",
+        "priority": "low",
+        "category": "Personal"
+    },
+    {
+        "name": "Staubsaugen",
+        "deadline": "01.07.2023",
+        "priority": "mittel",
+        "category": "Haushalt"
+    }
+]

@@ -1,7 +1,6 @@
 {
     "name": "Bis Ende Mai",
-    "tasks":
-    [
+    "tasks": [
         {
             "task": "Clean",
             "deadline": "Juni",
@@ -12,5 +11,9 @@
             "deadline": "August",
             "priority": "Tief"
         }
-    ]
+    ],
+    "Blablbla Liste": {
+        "name": "Blablbla Liste",
+        "tasks": "Ofen putzen, Wohnzimmer staubsaugen"
+    }
 }

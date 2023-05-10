@@ -1,22 +1,13 @@
-import random
-
 from flask import Flask, render_template, request
-
-from json_demo2 import write_json
-from json import loads, dumps
-
+from datenbank import write_json, read_json
 
 app = Flask(__name__)
 
 # list of tasks
-tasks = [{'name': 'Task 1', 'deadline': '2023-05-01', 'priority': 'High', 'list_name': 'List 1'},
-         {'name': 'Task 2', 'deadline': '2023-05-05', 'priority': 'Medium', 'list_name': 'List 2'},
-         {'name': 'Task 3', 'deadline': '2023-05-10', 'priority': 'Low', 'list_name': 'List 3'}]
+tasks = []
 
 # list of lists
-lists = [{'name': 'List 1', 'description': 'List 1 description'},
-         {'name': 'List 2', 'description': 'List 2 description'},
-         {'name': 'List 3', 'description': 'List 3 description'}]
+lists = read_json('lists.json')
 
 @app.route('/')
 def index():
@@ -35,15 +26,14 @@ def add_task():
 def add_list():
     list = {'name': request.form['list_name'], 'description': request.form['list_description']}
     lists.append(list)
+    write_json('lists.json', lists)
     return render_template('index.html', tasks=tasks, lists=lists)
 
 # sort by priority
 @app.route('/sort_priority', methods=['POST'])
 def sort_priority():
-    tasks_sorted = sorted(tasks, key=lambda k: k['priority'])
+    tasks_sorted = sorted(tasks)
     return render_template('index.html', tasks=tasks_sorted, lists=lists)
-
-print(tasks)
 
 @app.route("/neue_kategorie", methods=["GET", "POST"])
 def neue_kategorie():
@@ -59,6 +49,26 @@ def neue_kategorie():
         }
         write_json('kategorie.json', neue_kategorie)
         return "Kategorie wurde gespeichert"
+
+
+@app.route("/lists")
+def get_lists():
+    return render_template('task_liste.html', lists=lists)
+
+@app.route("/neuer_task", methods=["GET", "POST"])
+def neuer_task():
+    if request.method == "GET":
+        return render_template("neuer_task.html")
+
+    if request.method == "POST":
+        task_name = request.form['task_name']
+        priorität = request.form['priorität']
+        neuer_task = {
+            "name": task_name,
+            "priorität": priorität
+        }
+        write_json('tasks.json', neuer_task)
+        return "Task wurde gespeichert"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
