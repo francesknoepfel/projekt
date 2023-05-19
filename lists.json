@@ -1,19 +1,10 @@
-{
-    "name": "Bis Ende Mai",
-    "tasks": [
-        {
-            "task": "Clean",
-            "deadline": "Juni",
-            "priority": "High"
-        },
-        {
-            "task": "Hausaufgaben",
-            "deadline": "August",
-            "priority": "Tief"
-        }
-    ],
-    "Blablbla Liste": {
-        "name": "Blablbla Liste",
-        "tasks": "Ofen putzen, Wohnzimmer staubsaugen"
-    }
-}
+[
+  {
+    "name": "List 1",
+    "description": "Description of List 1"
+  },
+  {
+    "name": "List 2",
+    "description": "Description of List 2"
+  }
+]

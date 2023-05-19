@@ -2,16 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Neuer Task hinzufügen </title>
+    <title>Neuer Task hinzufügen</title>
 </head>
 <body>
-<form method="POST">
-    <input type="text" name="task_name" placeholder="Bitte gib deinen Task ein">
-    <form method="POST">
-        <input type="text" name="deadline" placeholder="Bis wann sollte der Task fertig sein?">
-    <input type="text" name="priorität" placeholder="Bitte gib an welche Priorität diese Kategorie hat">
-        <input type="text" name="kategorie" placeholder="Zu welcher Kategoire gehört dieser Task?">
-    <button type="submit">Senden</button>
+    <h1>Neuer Task hinzufügen</h1>
+    <form method="POST" action="/add_task">
+        <label for="task_name">Task Name:</label>
+        <input type="text" name="task_name" id="task_name" placeholder="Bitte gib deinen Task ein" required>
 
+        <label for="deadline">Deadline:</label>
+        <input type="text" name="deadline" id="deadline" placeholder="Bis wann sollte der Task fertig sein?">
+
+        <label for="priority">Priorität:</label>
+        <input type="text" name="priority" id="priority" placeholder="Bitte gib die Priorität des Tasks an">
+
+        <label for="list_name">Kategorie:</label>
+        <select name="list_name" id="list_name">
+            {% for list in lists %}
+                <option value="{{ list['name'] }}">{{ list['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Senden</button>
+    </form>
 </body>
 </html>
