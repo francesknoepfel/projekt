@@ -1,102 +1,32 @@
-# projekt
+# Tick Task - To-Do-Liste-App
 
-Arbeiten Sie Ihre Projekt-Idee aus und schreiben Sie eine Beschreibung in Ihre README.md.
+Tick Task ist eine webbasierte To-Do-Listen-Anwendung, mit der Benutzer ihre Aufgaben verwalten und organisiert bleiben können. Die App bietet eine intuitive und benutzerfreundliche Benutzeroberfläche zum Erstellen, Aktualisieren und Priorisieren von Aufgaben in verschiedenen Listen.
 
-Das Dokument sollte beschreiben:
+## Motivation
 
-Ausgangslage
-Funktion/Projektidee
-Workflow
-Dateneingabe
-Datenverarbeitung/Speicherung
-Datenausgabe
-Achten Sie auf die Formatierung.
+Die Motivation hinter der Entwicklung von Tick Task bestand darin, eine personalisierte To-Do-Listen-Anwendung zu erstellen, die den spezifischen Bedürfnissen und Vorlieben der Benutzer gerecht wird. Obwohl es viele To-Do-Listen-Apps gibt, zielt Tick Task darauf ab, ein schlankes und anpassbares Erlebnis zu bieten, das es Benutzern ermöglicht, Aufgaben basierend auf ihren individuellen Anforderungen zu erstellen und zu organisieren.
 
-Pushen Sie Ihre README auf Github und schicken Sie mir Ihren Github Namen und Ihre Repo URL per E-Mail zu.
+## Funktionen
 
-MÖGLICHER AUFBAU
+- **Aufgabenverwaltung**: Benutzer können neue Aufgaben erstellen, indem sie einen Namen, ein Fälligkeitsdatum, eine Prioritätsstufe angeben und sie einer bestimmten Liste zuordnen.
+- **Listen erstellen**: Benutzer können neue Listen erstellen, um verwandte Aufgaben zu kategorisieren und zu gruppieren.
+- **Aufgabenpriorisierung**: Aufgaben können als "Hoch", "Mittel" oder "Niedrig" priorisiert werden, um Benutzern bei der Konzentration auf dringende und wichtige Aufgaben zu helfen.
+- **Fälligkeit verfolgen**: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben.
+- **Aufgaben sortieren**: Benutzer können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
+- **Responsive Design**: Die App ist so konzipiert, dass sie auf verschiedenen Geräten reagiert und zugänglich ist. Benutzer können ihre Aufgaben auf Desktops, Laptops, Tablets und Smartphones verwalten.
 
-Problembeschreibung/Motivation
+## Verwendete Technologien
 
-Warum dieses Projekt
-Welches Problem löst das Projekt
-Was macht das Projekt Lückenfüller wie: "Dieses Projekt wurde im Rahmen des Programmieren2 Modules an der FHGR gemacht" oder ähnlich sind unnötig. Auch sollten keine Klarnamen, oder Orte genannt werden.
-Betrieb
+- **Flask**: Das Backend der Anwendung wird mit dem Flask-Webframework erstellt, das eine solide Grundlage für die Verarbeitung von HTTP-Anfragen und die Verwaltung von Daten bietet.
+- **HTML/CSS**: Die Benutzeroberfläche wird mit HTML zur Strukturierung des Inhalts und CSS zur Gestaltung und Layouterstellung entworfen.
+- **Bootstrap**: Das Bootstrap-Framework wird für reaktionsfähige und für Mobilgeräte geeignete Designkomponenten verwendet, um eine konsistente und visuell ansprechende Benutzererfahrung sicherzustellen.
+- **JavaScript**: Einige interaktive Funktionen und clientseitige Funktionalitäten können mit JavaScript implementiert werden.
 
-Welche zusätzliche Pakete müssen bei Bedarf installiert werden. (Muss im Normalfall nicht beachtet werden. Python muss nicht erwähnt werden, da das bei einem Python Projekt impliziert ist.)
-Was muss man bei der Ausführung beachten. Was muss eventuell davor noch gemacht werden.
-Welch Datei muss ausgeführt werden
-Benutzung
+## Setup und Verwendung
 
-Wie wird das Projekt benutzt
-Welche Optionen oder auch Spezialitäten existieren
-Architektur
+Um die Tick Task-Anwendung lokal einzurichten und auszuführen, befolge diese Schritte:
 
-Hier bei Bedarf eine kurze Beschreibung des Ablaufs des Programms auf Code Ebene z.B. als Ablaufdiagramm.
-Ungelöste/unbearbeitete Probleme
-
-Was wurde nicht gelöst
-Welche Verbesserungen könnten noch gemacht werden.
-
-
-Leistungsnachweis
-Beschreibung
--	Mithilfe des Microframeworks Flask soll eine Webapplikation (App) entwickelt werden.
-Bewertungskriterien
--	Codeverwaltung (10 Punkte)
-o	Regelmässige Aktualisierungen des Projektes auf Github die eine kontinuierliche und stetige Arbeit am Projekt während des Semesters zeigt
--	Dokumentation (20 Punkte)
-o	Erklärungen von Überlegungen und Struktur des Codes in Form von Kommentaren und Funktionsbeschreibungen im Code. Eine Projektbeschreibung mit Überlegungen und Entstehungsdetails mit Projektidee und Diagramme. Anleitungen oder Walkthrough wie das Projekt installiert und benutzt wird, welche Funktionen vorhanden sind und wie diese eingesetzt werden.
--	Datenverarbeitung und Ausgabe (100 Punkte)
-o	Daten in die App hochladen, speichern, verarbeiten und ausgeben. Dabei werden Python, Flask, HTML und CSS eingesetzt.
--	Qualität und Aufwand (70 Punkte)
-o	Code- und Projekt
-Code Review
-In einer individuellen mündlichen Prüfung beweisen Studierende ihr Verständnis des Programmcodes der abgegebenen Projektarbeit.
-
- 
-Aufbau (basierend auf Beispiel aus Vorlesung)
- 
-Inhalt
-1.	Ausgangslage des Projekts
-2.	Funktion/Projektidee
-3.	Ablaufdiagramm
-4.	Anleitung & Walkthrough
-5.	Reflexion
-Ausgangslage
-Seit ich in meiner Schulkarriere auf mich alleine gestellt bin und selber meine Aufgaben und Deadlines im Griff haben muss, benutze ich To-Do Listen. Mithilfe von Listen kann man strukturiert und organisiert arbeiten, egal ob im Rahmen des Studiums, Haushalts oder sonstigen Verpflichtungen. Zudem bestätigt das Abhaken der Aufgabe bei Vollenden ein Gefühl von Leistungserbringung. Wichtige Funktionsmöglichkeiten für mich sind die Kategorisierung von Aufgaben, sowie Deadline-Setzung und Erinnerungen jener Tasks. 
-
-Als Projekt im Programmieren 2 programmiere ich eine To-Do Liste Webapplikation mit dem Ziel alle möglichen Tasks unter einen Hut zu bringen. Die App sollte es ermöglichen aus vorgegebenen, sowie selber erstellten Kategorien auszusuchen, um eine neue To-Do Liste zu erstellen. Die Tasks sollten schnell erstellt werden können und der entsprechenden Liste zugeordnet werden, sowie schnell und einfach eine Zeit und/oder Datum eingestellt werden. Nutzende der App sollten beim Öffnen eine einfache Übersicht der bevorstehenden Tasks sehen, sowie die dringlichsten Aufgaben hervorgehoben bekommen. 
-
-Eingebaute Funktionen:
--	Datum & Zeit Auswahl
--	Kategorie (mit dazugehörender Farbe) Auswahl
--	Priorisierung
--	Erinnerungseinstellung
--	Neuer Task
--	Abgehakte Tasks sind noch zu finden
--	
-
-Funktion/Projektidee
--	Wireframe
-Die App ist so aufgebaut, dass man direkt auf der Landing Page die noch geöffneten Tasks auf einen Blick sieht. Diese sind unter ihren Kategorien aufgelistet und nach Zeit und Datum priorisiert. Zudem sollte schnell und einfach mit dem «Neuer Task»-Button ein neuer Eintrag gemacht werden. 
- Siehe Beispiel aus Vorlesung (in Fotos)
-
-Ablaufdiagramm
- Anleitung
-Flask import flask
-.... noch weitere nötig?
- wird wahrscheinlich zuletzt geschrieben
-
-Vorhandene Funktionen
-In main.py:
-....
-In daten.py
-....
-Vorhanden Files
--	Ordnerstruktur
-Reflexion
-Xy
-
-
-
+1. Klone das Repository: `git clone https://github.com/your-username/tick-task.git`
+2. Installiere die benötigten Abhängigkeiten: `pip install -r requirements.txt`
+3. Starte den Flask-Entwicklungsserver: `python main.py`
+4. Greife mit de
