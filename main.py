@@ -1,5 +1,8 @@
+import random
 from flask import Flask, render_template, request
-from datenbank import write_json, read_json
+from datenbank import write_json, read
+
+import datenbank
 
 app = Flask(__name__)
 
@@ -7,10 +10,10 @@ app = Flask(__name__)
 tasks = []
 
 # list of lists
-lists = read_json('lists.json')
+lists = read('lists.json')
 
 def get_list_names():
-    lists = read_json('lists.json')
+    lists = read('lists.json')
     return [lst['name'] for lst in lists]
 
 @app.route('/')
