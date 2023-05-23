@@ -12,8 +12,8 @@ Als Projekt im Programmieren 2 programmiere ich eine To-Do Liste Webapplikation 
 - Listen erstellen: Benutzer*innen können neue Listen erstellen, um verwandte Aufgaben zu kategorisieren und zu gruppieren.
 - Aufgabenpriorisierung: Aufgaben können als "Hoch", "Mittel" oder "Niedrig" priorisiert werden, um Benutzer*innen bei der Konzentration auf dringende und wichtige Aufgaben zu helfen.
 - Kategorie: Benutzer*innen können ihre Tasks Kategorien zuordnen.
-# NOCH ABKLÄREN OB MÖGLICH - Fälligkeit verfolgen: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben. --> DATUM & ZEIT AUSWAHL
-# NOCH ABKLÄREN OB MÖGLICH - Aufgaben sortieren: Benutzer*innen können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
+NOCH ABKLÄREN OB MÖGLICH - Fälligkeit verfolgen: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben. --> DATUM & ZEIT AUSWAHL
+NOCH ABKLÄREN OB MÖGLICH - Aufgaben sortieren: Benutzer*innen können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
 - Design: 
 
 ## Verwendete Technologien
