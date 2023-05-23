@@ -3,8 +3,9 @@ from datenbank import write_json, read
 
 app = Flask(__name__)
 
-# dictionary to store tasks for each list
+# dictionary zum Speichern von Aufgaben für jede Liste und Kategorien
 list_tasks = {}
+category_data = {}
 
 # list of lists
 lists = read('daten/lists.json')
@@ -12,47 +13,84 @@ lists = read('daten/lists.json')
 
 def get_list_names():
     lists = read('daten/lists.json')
-    print(type(lists))
-    print(lists)
     return [lst['name'] for lst in lists]
 
 
 @app.route('/')
 def index():
-    list_names = get_list_names()  # Retrieve list names
-    print(list_names)  # Print list names
-    return render_template('index.html', lists=lists, list_names=list_names)
+    list_names = get_list_names()  # list namen holen
+    return render_template('index.html', lists=lists, list_names=list_names, category_data=category_data)
 
 
-# add a new task
-@app.route('/add_task', methods=['POST'])
-def add_task():
-    list_names = get_list_names()  # Retrieve list names
-    task = {
-        'name': request.form['task_name'],
-        'deadline': request.form['deadline'],
-        'priority': request.form['priority'],
-        'list_name': request.form['lst_name']
-    }
+@app.route('/neuer_task')  # route um Tasks zu erstellen
+def neuer_task():
+    list_names = get_list_names()  # list names holen
+    return render_template('neuer_task.html', list_names=list_names, categories=category_data.keys())
+
+
+@app.route('/neue_liste')  # route um neue Liste zu erstellen
+def neue_liste():
+    return render_template('neue_liste.html')
+
+
+# neuer Task erstellen
+    @app.route('/add_task', methods=['POST'])
+    def add_task():
+        list_names = get_list_names()  # Namen der Listen holen
+        task = {
+            'name': request.form['task_name'],
+            'deadline': request.form['deadline'],
+            'priority': request.form['priority'],
+            'list_name': request.form['lst_name'],
+            'category': request.form['category']
+        }
     list_name = task['list_name']
+    category = task['category']
     if list_name in list_tasks:
         list_tasks[list_name].append(task)
     else:
         list_tasks[list_name] = [task]
-    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks)
+
+    if category == "new_category":
+        new_category = request.form['new_category_name']
+        if new_category in category_data:
+            category_data[new_category]['tasks'].append(task)
+        else:
+            category_data[new_category] = {'tasks': [task], 'lists': []}
+    elif category in category_data:
+        category_data[category]['tasks'].append(task)
+    else:
+        category_data[category] = {'tasks': [task], 'lists': []}
+
+    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks, category_data=category_data)
 
 
-# add a new list
+# neue Liste erstellen
 @app.route('/add_list', methods=['POST'])
 def add_list():
     list_name = request.form['lst_name']
     list_description = request.form['list_description']
+    category = request.form['category']
+
     new_list = {'name': list_name, 'description': list_description}
+
     lists.append(new_list)
     write_json('daten/lists.json', lists)
-    list_names = get_list_names()  # Retrieve list names
-    print(list_names)  # Print list names
-    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks)
+
+    if category == "new_category":
+        new_category = request.form['new_category_name']
+        if new_category in category_data:
+            category_data[new_category]['lists'].append(new_list)
+        else:
+            category_data[new_category] = {'tasks': [], 'lists': [new_list]}
+    elif category in category_data:
+        category_data[category]['lists'].append(new_list)
+    else:
+        category_data[category] = {'tasks': [], 'lists': [new_list]}
+
+    list_names = get_list_names()  # Listen namen holen
+
+    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks, category_data=category_data)
 
 
 if __name__ == '__main__':
