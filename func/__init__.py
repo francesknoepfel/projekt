@@ -1,1 +1,1 @@
-print ("ich bin die init {__name__}")
+# print ("ich bin die init {__name__}")

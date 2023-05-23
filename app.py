@@ -1,13 +1,10 @@
-# import random
 from flask import Flask, render_template, request
-from func.datenbank import write_json, read
-
-from func import datenbank
+from datenbank import write_json, read
 
 app = Flask(__name__)
 
-# list of tasks
-tasks = []
+# dictionary to store tasks for each list
+list_tasks = {}
 
 # list of lists
 lists = read('daten/lists.json')
@@ -15,13 +12,16 @@ lists = read('daten/lists.json')
 
 def get_list_names():
     lists = read('daten/lists.json')
+    print(type(lists))
+    print(lists)
     return [lst['name'] for lst in lists]
 
 
 @app.route('/')
 def index():
     list_names = get_list_names()  # Retrieve list names
-    return render_template('index.html', tasks=tasks, lists=lists, list_names=list_names)
+    print(list_names)  # Print list names
+    return render_template('index.html', lists=lists, list_names=list_names)
 
 
 # add a new task
@@ -32,23 +32,27 @@ def add_task():
         'name': request.form['task_name'],
         'deadline': request.form['deadline'],
         'priority': request.form['priority'],
-        'list_name': request.form['list_name']
+        'list_name': request.form['lst_name']
     }
-    tasks.append(task)
-    return render_template('index.html', tasks=tasks, lists=lists, list_names=list_names)
+    list_name = task['list_name']
+    if list_name in list_tasks:
+        list_tasks[list_name].append(task)
+    else:
+        list_tasks[list_name] = [task]
+    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks)
 
 
 # add a new list
 @app.route('/add_list', methods=['POST'])
 def add_list():
-    list_name = request.form['list_name']
+    list_name = request.form['lst_name']
     list_description = request.form['list_description']
     new_list = {'name': list_name, 'description': list_description}
     lists.append(new_list)
     write_json('daten/lists.json', lists)
     list_names = get_list_names()  # Retrieve list names
-    return render_template('index.html', tasks=tasks, lists=lists, list_names=list_names)
-
+    print(list_names)  # Print list names
+    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks)
 
 
 if __name__ == '__main__':

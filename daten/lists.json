@@ -1,10 +1,10 @@
 [
-  {
-    "name": "List 1",
-    "beschreibung": "Description of List 1"
-  },
-  {
-    "name": "List 2",
-    "beschreibung": "Description of List 2"
-  }
+    {
+        "name": "Groceries",
+        "description": "Buy groceries for the week"
+    },
+    {
+        "name": "Errands",
+        "description": "Complete errands"
+    }
 ]

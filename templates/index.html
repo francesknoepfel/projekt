@@ -4,55 +4,54 @@
   <title>Tick Task</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-
 </head>
 <body>
-  <nav>
-    <a href="#">Tick Task</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tick Task</a>
   </nav>
-  <div>
+  <div class="container mt-5">
     <h1>Tick Task</h1>
     <hr>
     <h2>Neuer Task</h2>
     <form action="/add_task" method="POST">
-      <div>
+      <div class="form-group">
         <label for="task_name">Name</label>
-        <input type="text" id="task_name" name="task_name" required>
+        <input type="text" class="form-control" id="task_name" name="task_name" required>
       </div>
-      <div>
+      <div class="form-group">
         <label for="deadline">Deadline</label>
-        <input type="date" id="deadline" name="deadline" required>
+        <input type="date" class="form-control" id="deadline" name="deadline" required>
       </div>
-      <div>
+      <div class="form-group">
         <label for="priority">Priority</label>
-        <select id="priority" name="priority" required>
+        <select class="form-control" id="priority" name="priority" required>
           <option value="High">Sofort erledigen</option>
           <option value="Medium">Nicht dringend</option>
           <option value="Low">Du kannst noch warten</option>
         </select>
       </div>
-      <div>
-        <label for="lst_name">List Name</label>
-        <select id="lst_name" name="lst_name" required>
+      <div class="form-group">
+        <label for="list_name">List Name</label>
+        <select class="form-control" id="list_name" name="list_name" required>
           {% for lst in lists %}
           <option value="{{ lst.name }}">{{ lst.name }}</option>
           {% endfor %}
         </select>
       </div>
-      <button type="submit">Task hinzufügen</button>
+      <button type="submit" class="btn btn-primary">Task hinzufügen</button>
     </form>
     <hr>
     <h2>Neue Liste</h2>
     <form action="/add_list" method="POST">
-      <div>
+      <div class="form-group">
         <label for="lst_name">Name</label>
-        <input type="text" id="lst_name" name="lst_name" required>
+        <input type="text" class="form-control" id="lst_name" name="lst_name" required>
       </div>
-      <div>
+      <div class="form-group">
         <label for="list_description">Beschreibung</label>
-        <textarea id="list_description" name="list_description" rows="3"></textarea>
+        <textarea class="form-control" id="list_description" name="list_description" rows="3"></textarea>
       </div>
-      <button type="submit">Liste hinzufügen</button>
+      <button type="submit" class="btn btn-primary">Liste hinzufügen</button>
     </form>
     <hr>
     <h2>Tasks</h2>
@@ -60,6 +59,6 @@
       <!-- Add your form elements here -->
     </form>
   </div>
-<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 </html>
