@@ -1,32 +1,48 @@
 # Tick Task - To-Do-Liste-App
-
 Tick Task ist eine webbasierte To-Do-Listen-Anwendung, mit der Benutzer ihre Aufgaben verwalten und organisiert bleiben können. Die App bietet eine intuitive und benutzerfreundliche Benutzeroberfläche zum Erstellen, Aktualisieren und Priorisieren von Aufgaben in verschiedenen Listen.
 
 ## Motivation
 
-Die Motivation hinter der Entwicklung von Tick Task bestand darin, eine personalisierte To-Do-Listen-Anwendung zu erstellen, die den spezifischen Bedürfnissen und Vorlieben der Benutzer gerecht wird. Obwohl es viele To-Do-Listen-Apps gibt, zielt Tick Task darauf ab, ein schlankes und anpassbares Erlebnis zu bieten, das es Benutzern ermöglicht, Aufgaben basierend auf ihren individuellen Anforderungen zu erstellen und zu organisieren.
+Seit ich in meiner Schulkarriere auf mich alleine gestellt bin und selber meine Aufgaben und Deadlines im Griff haben muss, benutze ich To-Do Listen. Mithilfe von Listen kann man strukturiert und organisiert arbeiten, egal ob im Rahmen des Studiums, Haushalts oder sonstigen Verpflichtungen. Zudem bestätigt das Abhaken der Aufgabe bei Vollenden ein Gefühl von Leistungserbringung. Wichtige Funktionsmöglichkeiten für mich sind die Kategorisierung von Aufgaben, sowie Deadline-Setzung und Erinnerungen jener Tasks. 
+Als Projekt im Programmieren 2 programmiere ich eine To-Do Liste Webapplikation mit dem Ziel alle möglichen Tasks unter einen Hut zu bringen. Die App sollte es ermöglichen aus vorgegebenen, sowie selber erstellten Kategorien auszusuchen, um eine neue To-Do Liste zu erstellen. Die Tasks sollten schnell erstellt werden können und der entsprechenden Liste zugeordnet werden, sowie schnell und einfach eine Zeit und/oder Datum eingestellt werden. Nutzende der App sollten beim Öffnen eine einfache Übersicht der bevorstehenden Tasks sehen, sowie die dringlichsten Aufgaben hervorgehoben bekommen. 
 
-## Funktionen
+## Features
 
-- **Aufgabenverwaltung**: Benutzer können neue Aufgaben erstellen, indem sie einen Namen, ein Fälligkeitsdatum, eine Prioritätsstufe angeben und sie einer bestimmten Liste zuordnen.
-- **Listen erstellen**: Benutzer können neue Listen erstellen, um verwandte Aufgaben zu kategorisieren und zu gruppieren.
-- **Aufgabenpriorisierung**: Aufgaben können als "Hoch", "Mittel" oder "Niedrig" priorisiert werden, um Benutzern bei der Konzentration auf dringende und wichtige Aufgaben zu helfen.
-- **Fälligkeit verfolgen**: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben.
-- **Aufgaben sortieren**: Benutzer können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
-- **Responsive Design**: Die App ist so konzipiert, dass sie auf verschiedenen Geräten reagiert und zugänglich ist. Benutzer können ihre Aufgaben auf Desktops, Laptops, Tablets und Smartphones verwalten.
+- Aufgabenverwaltung: Benutzer*innen können neue Aufgaben erstellen, indem sie einen Namen, ein Fälligkeitsdatum, eine Prioritätsstufe angeben und sie einer bestimmten Liste zuordnen.
+- Listen erstellen: Benutzer*innen können neue Listen erstellen, um verwandte Aufgaben zu kategorisieren und zu gruppieren.
+- Aufgabenpriorisierung: Aufgaben können als "Hoch", "Mittel" oder "Niedrig" priorisiert werden, um Benutzer*innen bei der Konzentration auf dringende und wichtige Aufgaben zu helfen.
+- Kategorie: Benutzer*innen können ihre Tasks Kategorien zuordnen.
+# NOCH ABKLÄREN OB MÖGLICH - Fälligkeit verfolgen: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben. --> DATUM & ZEIT AUSWAHL
+# NOCH ABKLÄREN OB MÖGLICH - Aufgaben sortieren: Benutzer*innen können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
+- Design: 
 
 ## Verwendete Technologien
 
-- **Flask**: Das Backend der Anwendung wird mit dem Flask-Webframework erstellt, das eine solide Grundlage für die Verarbeitung von HTTP-Anfragen und die Verwaltung von Daten bietet.
-- **HTML/CSS**: Die Benutzeroberfläche wird mit HTML zur Strukturierung des Inhalts und CSS zur Gestaltung und Layouterstellung entworfen.
-- **Bootstrap**: Das Bootstrap-Framework wird für reaktionsfähige und für Mobilgeräte geeignete Designkomponenten verwendet, um eine konsistente und visuell ansprechende Benutzererfahrung sicherzustellen.
-- **JavaScript**: Einige interaktive Funktionen und clientseitige Funktionalitäten können mit JavaScript implementiert werden.
+- Flask: Das Backend der Anwendung wird mit dem Flask-Webframework erstellt, das eine solide Grundlage für die Verarbeitung von HTTP-Anfragen und die Verwaltung von Daten bietet.
+- HTML/CSS: Die Benutzeroberfläche wird mit HTML zur Strukturierung des Inhalts und CSS zur Gestaltung und Layouterstellung entworfen.
+- Bootstrap: Das Bootstrap-Framework wird für reaktionsfähige und für Mobilgeräte geeignete Designkomponenten verwendet, um eine konsistente und visuell ansprechende Benutzererfahrung sicherzustellen.
+(- JavaScript: Einige interaktive Funktionen und clientseitige Funktionalitäten können mit JavaScript implementiert werden.)
+
+## Vorhandene Funktionen
+In app.py:
+
+In daten.py:
+
+In Index.html?
+
+## Design
+- Wireframes: 
+- Ablaufdiagramm
+- 
 
 ## Setup und Verwendung
 
-Um die Tick Task-Anwendung lokal einzurichten und auszuführen, befolge diese Schritte:
+## Ordnerstruktur
 
-1. Klone das Repository: `git clone https://github.com/your-username/tick-task.git`
-2. Installiere die benötigten Abhängigkeiten: `pip install -r requirements.txt`
-3. Starte den Flask-Entwicklungsserver: `python main.py`
-4. Greife mit de
+## Anleitung
+
+## Projektreflexion
+Als angehende Programmiererin, die ausserhalb meines Studiums nur wenig Interesse an der Programmierwelt hatte, fiel es mir anfangs schwer, mich in das Projekt zu stürzen. Allerdings musste ich mich zusammenreißen, da mir nun eine zweite Chance gegeben wurde, mich in diesem Kurs zu verbessern und eine ausreichende Note zu erzielen. Anstatt mich auf Desinteresse am Modul einzustellen, versuchte ich meine Perspektive zu ändern, um tatsächlich Fortschritte zu machen. Also begann ich damit. Schnell wurde mir klar, dass mir viele grundlegende Elemente des Programmierens fehlen, wodurch mein Fortschritt äußerst langsam war. Daraufhin entschied ich, dass es am sinnvollsten wäre, den Unterricht als Aufzeichnung anzusehen, damit ich jederzeit pausieren und besser folgen konnte. 
+
+Ich entschied mich für meine Projektidee aus zwei Gründen: Zum einen, weil ich persönlich davon profitieren würde, und zum anderen, weil ich bei meinem ersten Durchgang im Modul Pro2 eine eher komplizierte Projektidee gewählt hatte. Dieses Mal wollte ich mit einer einfachen, aber gut umgesetzten Idee zufrieden sein. 
+......xy
