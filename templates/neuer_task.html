@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Neuer Task hinzufügen</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Tick Task</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/neuer_task">Neuer Task</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/neue_liste">Neue Liste</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+{% include "header.jinja2" %}
+{% include "navbar.jinja2" %}
     <div class="container mt-5">
         <h1>Neuer Task hinzufügen</h1>
         <form method="POST" action="/add_task">
@@ -69,20 +42,5 @@
             <button type="submit" class="btn btn-primary">Senden</button>
         </form>
     </div>
+{% include "header.jinja2" %}
 
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script>
-        // Show/hide the new category input based on the selected option
-        var listNameSelect = document.getElementById("list_name");
-        var newCategoryInput = document.getElementById("new_category");
-
-        listNameSelect.addEventListener("change", function() {
-            if (listNameSelect.value === "new_category") {
-                newCategoryInput.style.display = "block";
-            } else {
-                newCategoryInput.style.display = "none";
-            }
-        });
-    </script>
-</body>
-</html>

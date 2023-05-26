@@ -33,17 +33,22 @@ def neue_liste():
     return render_template('neue_liste.html')
 
 
+@app.route('/task_overview')  # route um Überblick von Tasks zu sehen
+def task_overview():
+    return render_template('task_overview.html')
+
+
 # neuer Task erstellen
-    @app.route('/add_task', methods=['POST'])
-    def add_task():
-        list_names = get_list_names()  # Namen der Listen holen
-        task = {
-            'name': request.form['task_name'],
-            'deadline': request.form['deadline'],
-            'priority': request.form['priority'],
-            'list_name': request.form['lst_name'],
-            'category': request.form['category']
-        }
+@app.route('/add_task', methods=['POST'])
+def add_task():
+    list_names = get_list_names()  # Namen der Listen holen
+    task = {
+        'name': request.form['task_name'],
+        'deadline': request.form['deadline'],
+        'priority': request.form['priority'],
+        'list_name': request.form['lst_name'],
+        'category': request.form['category']
+    }
     list_name = task['list_name']
     category = task['category']
     if list_name in list_tasks:
@@ -94,4 +99,4 @@ def add_list():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)
