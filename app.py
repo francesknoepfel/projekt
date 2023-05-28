@@ -8,13 +8,15 @@ list_tasks = {}
 category_data = {}
 
 # list of lists
-lists = read('daten/lists.json')
-
+lists = [
+    {'name': 'Category 1'},
+    {'name': 'Category 2'},
+    {'name': 'Category 3'},
+]
 
 def get_list_names():
     lists = read('daten/lists.json')
     return [lst['name'] for lst in lists]
-
 
 @app.route('/')
 def index():
@@ -35,7 +37,7 @@ def neue_liste():
 
 @app.route('/task_overview')  # route um Überblick von Tasks zu sehen
 def task_overview():
-    return render_template('task_overview.html')
+    return render_template('task_overview.html', list_tasks=list_tasks)
 
 
 # neuer Task erstellen
@@ -46,8 +48,8 @@ def add_task():
         'name': request.form['task_name'],
         'deadline': request.form['deadline'],
         'priority': request.form['priority'],
-        'list_name': request.form['lst_name'],
-        'category': request.form['category']
+        'list_name': request.form['list_name'],
+        'category': request.form['list_name']  # Use the selected category as the value
     }
     list_name = task['list_name']
     category = task['category']
@@ -67,7 +69,18 @@ def add_task():
     else:
         category_data[category] = {'tasks': [task], 'lists': []}
 
-    return render_template('index.html', lists=lists, list_names=list_names, list_tasks=list_tasks, category_data=category_data)
+    # Check if a new category is provided
+    new_category_input = request.form.get('new_category_input')
+    if new_category_input:
+        if new_category_input in category_data:
+            category_data[new_category_input]['tasks'].append(task)
+        else:
+            category_data[new_category_input] = {'tasks': [task], 'lists': []}
+
+    # Save the task to the JSON file
+    write_json('daten/tasks.json', list_tasks)
+
+    return render_template('task_overview.html', list_tasks=list_tasks, task=task, list_names=list_names, category_data=category_data)
 
 
 # neue Liste erstellen

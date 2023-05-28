@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Neue Kategorie hinzufügen </title>
-</head>
-<body>
+{% include "header.jinja2" %}
+{% include "navbar.jinja2" %}
+
 <form method="POST">
     <input type="text" name="kategorie_name" placeholder="Bitte gib den Namen der Kategorie ein">
     <form method="POST">
     <input type="text" name="priority" placeholder="Bitte gib an welche Priorität diese Kategorie hat">
     <button type="submit">Senden</button>
-
-</body>
-</html>
+        {% include "footer.jinja2" %}

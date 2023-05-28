@@ -1,46 +1,70 @@
 {% include "header.jinja2" %}
 {% include "navbar.jinja2" %}
-    <div class="container mt-5">
-        <h1>Neuer Task hinzufügen</h1>
-        <form method="POST" action="/add_task">
-            <div class="form-group">
-                <label for="task_name">Task Name:</label>
-                <input type="text" class="form-control" name="task_name" id="task_name"
-                       placeholder="Bitte gib deinen Task ein" required>
-            </div>
 
-            <div class="form-group">
-                <label for="deadline">Deadline:</label>
-                <input type="text" class="form-control" name="deadline" id="deadline"
-                       placeholder="Bis wann sollte der Task fertig sein?">
-            </div>
+<div class="container mt-5">
+    <h1>Neuer Task hinzufügen</h1>
+    <form method="POST" action="/add_task">
+        <div class="form-group">
+            <label for="task_name">Task Name:</label>
+            <input type="text" class="form-control" name="task_name" id="task_name"
+                   placeholder="Bitte gib deinen Task ein" required>
+        </div>
 
-            <div class="form-group">
-                <label for="priority">Priorität:</label>
-                <input type="text" class="form-control" name="priority" id="priority"
-                       placeholder="Bitte gib die Priorität des Tasks an">
-            </div>
-            <div class="form-group">
-    <label for="list_name">Kategorie:</label>
-    <select class="form-control" name="list_name" id="list_name">
-        <option value="" selected>Choose a category</option>
-        {% for list in lists %}
-            <option value="{{ list }}">{{ list }}</option>
+        <div class="form-group">
+            <label for="deadline">Deadline:</label>
+            <input type="text" class="form-control" name="deadline" id="deadline"
+                   placeholder="Bis wann sollte der Task fertig sein?">
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Priorität:</label>
+            <input type="text" class="form-control" name="priority" id="priority"
+                   placeholder="Bitte gib die Priorität des Tasks an">
+        </div>
+        <div class="form-group">
+            <label for="list_name">Kategorie:</label>
+            <select class="form-control" name="list_name" id="list_name">
+                <option value="" selected>Choose a category</option>
+                {% for category in ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"] %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+                <option value="new_category">Kategorie hinzufügen</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="new_category" style="display: none;">
+            <label for="new_category_name">New Category Name:</label>
+            <input type="text" class="form-control" name="new_category_name" id="new_category_name"
+                   placeholder="Enter the name of the new category">
+            <small id="new_category_help" class="form-text text-muted">Enter the name of the new category.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Senden</button>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <h2>Added Tasks</h2>
+    <ul class="list-group" id="task-list">
+        {% for task in tasks %}
+        <li class="list-group-item">
+            <h5>{{ task.name }}</h5>
+            <p>Deadline: {{ task.deadline }}</p>
+            <p>Priority: {{ task.priority }}</p>
+            <p>List Name: {{ task.list_name }}</p>
+            <p>Category: {{ task.category }}</p>
+        </li>
         {% endfor %}
-        <option value="new_category">Add New Category</option>
-    </select>
-            </div>
+    </ul>
+</div>
 
 
+<style>
+    /* CSS styles for the added tasks column */
+    #task-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
 
-            <div id="new_category" style="display: none;">
-                <label for="new_category_name">New Category Name:</label>
-                <input type="text" class="form-control" name="new_category_name" id="new_category_name"
-                       placeholder="Enter the name of the new category">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Senden</button>
-        </form>
-    </div>
-{% include "header.jinja2" %}
-
+{% include "footer.jinja2" %}

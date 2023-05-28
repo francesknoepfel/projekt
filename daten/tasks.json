@@ -432,5 +432,114 @@
             "priority": "mittel",
             "category": "Haushalt"
         }
-    ]
+    ],
+    {
+        "new_category": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ]
+    },
+    {
+        "new_category": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "new_category",
+                "category": "new_category"
+            },
+            {
+                "name": "f",
+                "deadline": "f",
+                "priority": "f",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ]
+    },
+    {
+        "new_category": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "new_category",
+                "category": "new_category"
+            },
+            {
+                "name": "f",
+                "deadline": "f",
+                "priority": "f",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ],
+        "": [
+            {
+                "name": "f",
+                "deadline": "f",
+                "priority": "f",
+                "list_name": "",
+                "category": ""
+            }
+        ]
+    },
+    {
+        "new_category": [
+            {
+                "name": "Hello",
+                "deadline": "23.6.23",
+                "priority": "Hoch",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ]
+    },
+    {
+        "new_category": [
+            {
+                "name": "Hello",
+                "deadline": "23.6.23",
+                "priority": "Hoch",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ],
+        "": [
+            {
+                "name": "chill",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "",
+                "category": ""
+            }
+        ]
+    },
+    {
+        "Schule": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "Schule",
+                "category": "Schule"
+            }
+        ]
+    },
+    {
+        "Schule": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "Schule",
+                "category": "Schule"
+            }
+        ]
+    }
 ]
