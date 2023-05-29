@@ -541,5 +541,49 @@
                 "category": "Schule"
             }
         ]
+    },
+    {
+        "Finanzen": [
+            {
+                "name": "Putzen",
+                "deadline": "23.4.2024",
+                "priority": "Tief",
+                "list_name": "Finanzen",
+                "category": "Finanzen"
+            }
+        ]
+    },
+    {
+        "new_category": [
+            {
+                "name": "Fenster putzen",
+                "deadline": "2.7.2023",
+                "priority": "Tief",
+                "list_name": "new_category",
+                "category": "new_category"
+            }
+        ]
+    },
+    {
+        "Haushalt": [
+            {
+                "name": "Frances",
+                "deadline": "23.6.23",
+                "priority": "Tief",
+                "list_name": "Haushalt",
+                "category": "Haushalt"
+            }
+        ]
+    },
+    {
+        "Schule": [
+            {
+                "name": "Poop",
+                "deadline": "23.4.2024",
+                "priority": "Tief",
+                "list_name": "Schule",
+                "category": "Schule"
+            }
+        ]
     }
 ]

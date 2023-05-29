@@ -1,0 +1,19 @@
+{% block content %}
+  {% include "header.jinja2" %}
+  {% include "navbar.jinja2" %}
+
+  <div class="container">
+    <h1 class="mt-5">Task Saved</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ task.name }}</h5>
+        <p class="card-text">Deadline: {{ task.deadline }}</p>
+        <p class="card-text">Priority: {{ task.priority }}</p>
+        <p class="card-text">List Name: {{ task.list_name }}</p>
+        <p class="card-text">Category: {{ task.category }}</p>
+      </div>
+    </div>
+  </div>
+
+  {% include "footer.jinja2" %}
+{% endblock %}

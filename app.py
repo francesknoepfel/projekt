@@ -27,7 +27,8 @@ def index():
 @app.route('/neuer_task')  # route um Tasks zu erstellen
 def neuer_task():
     list_names = get_list_names()  # list names holen
-    return render_template('neuer_task.html', list_names=list_names, categories=category_data.keys())
+    tasks = []  # Liste der Tasks aus Datenquelle holen
+    return render_template('neuer_task.html', list_names=list_names, tasks=tasks, categories=category_data.keys())
 
 
 @app.route('/neue_liste')  # route um neue Liste zu erstellen
@@ -37,11 +38,10 @@ def neue_liste():
 
 @app.route('/task_overview')  # route um Überblick von Tasks zu sehen
 def task_overview():
-    return render_template('task_overview.html', list_tasks=list_tasks)
+    return render_template('task_overview.html', list_tasks=list_tasks, category_data=category_data)
 
 
-# neuer Task erstellen
-@app.route('/add_task', methods=['POST'])
+@app.route('/add_task', methods=['POST'])  # neuer Task erstellen
 def add_task():
     list_names = get_list_names()  # Namen der Listen holen
     task = {
@@ -49,7 +49,7 @@ def add_task():
         'deadline': request.form['deadline'],
         'priority': request.form['priority'],
         'list_name': request.form['list_name'],
-        'category': request.form['list_name']  # Use the selected category as the value
+        'category': request.form['list_name']  # Die ausgewählte Kategorie als Wert verwenden
     }
     list_name = task['list_name']
     category = task['category']
@@ -69,7 +69,7 @@ def add_task():
     else:
         category_data[category] = {'tasks': [task], 'lists': []}
 
-    # Check if a new category is provided
+    # Überprüfen, ob eine neue Kategorie angegeben wurde
     new_category_input = request.form.get('new_category_input')
     if new_category_input:
         if new_category_input in category_data:
@@ -77,14 +77,13 @@ def add_task():
         else:
             category_data[new_category_input] = {'tasks': [task], 'lists': []}
 
-    # Save the task to the JSON file
+    # Task in der JSON-Datei speichern
     write_json('daten/tasks.json', list_tasks)
 
     return render_template('task_overview.html', list_tasks=list_tasks, task=task, list_names=list_names, category_data=category_data)
 
 
-# neue Liste erstellen
-@app.route('/add_list', methods=['POST'])
+@app.route('/add_list', methods=['POST'])  # neue Liste erstellen
 def add_list():
     list_name = request.form['lst_name']
     list_description = request.form['list_description']

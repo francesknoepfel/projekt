@@ -21,10 +21,17 @@
             <input type="text" class="form-control" name="priority" id="priority"
                    placeholder="Bitte gib die Priorität des Tasks an">
         </div>
+
         <div class="form-group">
-            <label for="list_name">Kategorie:</label>
-            <select class="form-control" name="list_name" id="list_name">
-                <option value="" selected>Choose a category</option>
+            <label for="list_name">Liste:</label>
+            <input type="text" class="form-control" name="list_name" id="list_name"
+                   placeholder="Willst du diesen Task zu einer Liste hinzufügen?">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select class="form-control" name="category" id="category">
+                <option value="" selected>Wähle eine Kategorie aus</option>
                 {% for category in ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"] %}
                     <option value="{{ category }}">{{ category }}</option>
                 {% endfor %}
@@ -33,18 +40,19 @@
         </div>
 
         <div class="form-group" id="new_category" style="display: none;">
-            <label for="new_category_name">New Category Name:</label>
+            <label for="new_category_name">Name der neuen Kategorie:</label>
             <input type="text" class="form-control" name="new_category_name" id="new_category_name"
-                   placeholder="Enter the name of the new category">
-            <small id="new_category_help" class="form-text text-muted">Enter the name of the new category.</small>
+                   placeholder="Gib den Namen der neuen Kategorie ein">
+            <small id="new_category_help" class="form-text text-muted">Gib den Namen der neuen Kategorie ein.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Senden</button>
+        <button type="submit" class="btn btn-primary">Speichern</button>
     </form>
 </div>
 
+
 <div class="container mt-5">
-    <h2>Added Tasks</h2>
+    <h2>Hinzugefügte Tasks</h2>
     <ul class="list-group" id="task-list">
         {% for task in tasks %}
         <li class="list-group-item">
@@ -60,11 +68,11 @@
 
 
 <style>
-    /* CSS styles for the added tasks column */
+    /* CSS-Stile für die hinzugefügten Aufgaben */
     #task-list {
         max-height: 300px;
         overflow-y: auto;
     }
 </style>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %} <!-- Footer einbinden -->
