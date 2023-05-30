@@ -1,25 +1,31 @@
 {% include "header.jinja2" %}
 {% include "navbar.jinja2" %}
 
-    <h2>Task Overview</h2>
-    <!-- Task Übersicht -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Deadline</th>
-          <th>Priority</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for task in tasks %}
-        <tr>
-          <td>{{ task.name }}</td>
-          <td>{{ task.deadline }}</td>
-          <td>{{ task.priority }}</td>
-          <td>{{ task.category }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<div class="container">
+  <h1 class="mt-5 display-4">Willkommen zu Tick Task!</h1>
+  <!-- <h5> Auf Tick Task kannst du alle deine wichtigen Tasks und To Dos festhalten und abhacken. Du kannst neue Einträge machen und diese Listen und Kategorien zuordnen.
+  <br> Wenn du den Tasks eine Priorität oder ein Datum zuordnest, siehst du auf einen Blick was als nächstes ansteht. <br>
+  So kannst du über Chaos eine Übersicht haben. </h5> -->
+  <h2 class="mt-5">Task Overview</h2>
+  <!-- Task Übersicht -->
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Deadline</th>
+        <th>Priority</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task['name'] }}</td>
+        <td>{{ task['deadline'] }}</td>
+        <td>{{ task['priority'] }}</td>
+        <td>{{ task['category'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

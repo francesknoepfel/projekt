@@ -20,16 +20,39 @@ def get_list_names():
 
 @app.route('/')
 def index():
-    list_names = get_list_names()  # list namen holen
-    return render_template('index.html', lists=lists, list_names=list_names, category_data=category_data)
+    list_names = get_list_names()  # Get list names
+
+    # Retrieve the tasks and lists based on the category_data
+    tasks = []
+    lists = []
+    for category in category_data.values():
+        tasks.extend(category['tasks'])
+        lists.extend(category['lists'])
+
+    return render_template('index.html', list_names=list_names, tasks=tasks, lists=lists)
+
 
 
 @app.route('/neuer_task')  # route um Tasks zu erstellen
 def neuer_task():
     list_names = get_list_names()  # list names holen
     tasks = []  # Liste der Tasks aus Datenquelle holen
-    return render_template('neuer_task.html', list_names=list_names, tasks=tasks, categories=category_data.keys())
 
+    task = request.args.get('task')  # Get the saved task from the query parameters
+
+    return render_template('neuer_task.html', list_names=list_names, tasks=tasks, categories=category_data.keys(), task=task)
+
+@app.route('/save_task', methods=['POST'])  # create a new task
+def save_task():
+    list_names = get_list_names()  # Get list names
+    task = {
+        'name': request.form['task_name'],
+        'deadline': request.form['deadline'],
+        'priority': request.form['priority'],
+        'list_name': request.form['list_name'],
+        'category': request.form['list_name']  # Use the selected category as the value
+    }
+    return render_template('neuer_task.html', list_names=list_names, tasks=[], categories=category_data.keys(), show_task_saved=True, task=task)
 
 @app.route('/neue_liste')  # route um neue Liste zu erstellen
 def neue_liste():

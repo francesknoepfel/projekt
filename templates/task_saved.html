@@ -13,6 +13,10 @@
         <p class="card-text">Category: {{ task.category }}</p>
       </div>
     </div>
+    <!-- Button to add another new task -->
+    <form action="/neuer_task" method="GET">
+      <input type="submit" value="Add Another New Task" class="btn btn-primary mt-3">
+    </form>
   </div>
 
   {% include "footer.jinja2" %}

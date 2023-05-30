@@ -2,31 +2,14 @@
 {% include "navbar.jinja2" %} <!-- Navigationsleiste einbinden -->
 
 <div class="container mt-5">
-    <h1>Neuer Task hinzufügen</h1> <!-- Überschrift "Neuer Task hinzufügen" -->
-    <form method="POST" action="/add_task"> <!-- Formular zum Hinzufügen eines Tasks -->
+    <h1>Neue Liste hinzfügen</h1> <!-- Überschrift "Neue liste" hinzufügen" -->
+    <form method="POST" action="/add_list"> <!-- Formular zum Hinzufügen eines Tasks -->
         <div class="form-group">
-            <label for="task_name">Task Name:</label> <!-- Label für den Task-Namen -->
-            <input type="text" class="form-control" name="task_name" id="task_name"
-                   placeholder="Bitte gib deinen Task ein" required> <!-- Textfeld für den Task-Namen -->
-        </div>
-
-        <div class="form-group">
-            <label for="deadline">Deadline:</label> <!-- Label für die Deadline -->
-            <input type="text" class="form-control" name="deadline" id="deadline"
-                   placeholder="Bis wann sollte der Task fertig sein?"> <!-- Textfeld für die Deadline -->
-        </div>
-
-        <div class="form-group">
-            <label for="priority">Priorität:</label> <!-- Label für die Priorität -->
-            <input type="text" class="form-control" name="priority" id="priority"
-                   placeholder="Bitte gib die Priorität des Tasks an"> <!-- Textfeld für die Priorität -->
-        </div>
-
-        <div class="form-group">
-            <label for="list_name">Liste:</label> <!-- Label für die Liste -->
+            <label for="list_name">Name deiner Liste:</label> <!-- Label für den List Name -->
             <input type="text" class="form-control" name="list_name" id="list_name"
-                   placeholder="Willst du diesen Task zu einer Liste hinzufügen?"> <!-- Textfeld für die Liste -->
+                   placeholder="Bitte gib deiner Liste ein" required> <!-- Textfeld für den Task-Namen -->
         </div>
+
 
         <div class="form-group">
             <label for="existing_category">Kategorie</label> <!-- Label für die Kategorie -->
@@ -57,16 +40,16 @@
 </div>
 
 <div class="container mt-5">
-    <h2>Hinzugefügte Tasks</h2> <!-- Überschrift "Hinzugefügte Tasks" -->
-    <ul class="list-group" id="task-list"> <!-- Liste für die hinzugefügten Tasks -->
-        {% for task in tasks %}
+    <h2>Hinzugefügte Listen</h2> <!-- Überschrift "Hinzugefügte Listen" -->
+   <!--   <ul class="list-group" id="task-list"> <!-- Liste für die hinzugefügten Tasks -->
+       <!--  {% for task in tasks %}
         <li class="list-group-item">
             <h5>{{ task.name }}</h5> <!-- Anzeige des Task-Namens -->
-            <p>Deadline: {{ task.deadline }}</p> <!-- Anzeige der Deadline -->
-            <p>Priorität: {{ task.priority }}</p> <!-- Anzeige der Priorität -->
-            <p>List Name: {{ task.list_name }}</p> <!-- Anzeige des Listen-Namens -->
-            <p>Category: {{ task.category }}</p> <!-- Anzeige der Kategorie -->
-        </li>
+           <!--  <p>Deadline: {{ task.deadline }}</p> <!-- Anzeige der Deadline -->
+          <!--   <p>Priorität: {{ task.priority }}</p> <!-- Anzeige der Priorität -->
+            <!-- <p>List Name: {{ task.list_name }}</p> <!-- Anzeige des Listen-Namens -->
+           <!--  <p>Category: {{ task.category }}</p> <!-- Anzeige der Kategorie -->
+      <!--   </li>
         {% endfor %}
     </ul>
 </div>

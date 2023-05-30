@@ -1,9 +1,9 @@
 {% include "header.jinja2" %}
 {% include "navbar.jinja2" %}
 
-<div class="container mt-5">
-    <h1>Neuer Task hinzufügen</h1>
-    <form method="POST" action="/add_task">
+<div class="container">
+    <h1 class="mt-5">Neuer Task</h1>
+    <form action="/save_task" method="POST">
         <div class="form-group">
             <label for="task_name">Task Name:</label>
             <input type="text" class="form-control" name="task_name" id="task_name"
@@ -12,15 +12,23 @@
 
         <div class="form-group">
             <label for="deadline">Deadline:</label>
-            <input type="text" class="form-control" name="deadline" id="deadline"
-                   placeholder="Bis wann sollte der Task fertig sein?">
+            <div class="input-group date">
+                <input type="text" class="form-control" name="deadline" id="deadline" placeholder="Bis wann sollte der Task fertig sein?">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="priority">Priorität:</label>
-            <input type="text" class="form-control" name="priority" id="priority"
-                   placeholder="Bitte gib die Priorität des Tasks an">
-        </div>
+
+       <div class="form-group">
+    <label for="priority">Priorität:</label>
+    <select class="form-control" name="priority" id="priority">
+        <option value="tief">Tief</option>
+        <option value="medium">Medium</option>
+        <option value="hoch">Hoch</option>
+    </select>
+</div>
 
         <div class="form-group">
             <label for="list_name">Liste:</label>
@@ -46,9 +54,29 @@
             <small id="new_category_help" class="form-text text-muted">Gib den Namen der neuen Kategorie ein.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Speichern</button>
+        <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
-</div>
+
+     {% if show_task_saved %}
+    <!-- Task gespeichert -->
+    <h1 class="mt-5">Eintrag gespeichert</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ task.name }}</h5>
+        <p class="card-text">Deadline: {{ task.deadline }}</p>
+        <p class="card-text">Priority: {{ task.priority }}</p>
+        <p class="card-text">List Name: {{ task.list_name }}</p>
+        <p class="card-text">Category: {{ task.category }}</p>
+      </div>
+    </div>
+    <!-- Button um neuen Task hinzufügen -->
+    <form action="/neuer_task" method="GET">
+      <input type="submit" value="Nochmals einen Task hinzufügen" class="btn btn-primary mt-3">
+    </form>
+    {% endif %}
+  </div>
+
+
 
 
 <div class="container mt-5">
@@ -65,6 +93,7 @@
         {% endfor %}
     </ul>
 </div>
+
 
 
 <style>

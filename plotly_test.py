@@ -1,21 +1,22 @@
 import plotly.express as px
 import pandas as pd
-from app import category_data
+from flask import Flask, render_template, request
+from datenbank import write_json, read
 
-print(category_data)  # Add this line to inspect the category_data dictionary
+app = Flask(__name__)
 
-# Assuming you have a dictionary called category_data where each key is a category and the value is a list of tasks
-# Example category_data: {'Category 1': [{'name': 'Task 1'}, {'name': 'Task 2'}], 'Category 2': [{'name': 'Task 3'}]}
+# Assuming the user's chosen category is stored in a variable called "chosen_category"
+chosen_category = "xy"  # Replace "xy" with the user's chosen category
 
-# Prepare the data for the pie chart
-category_names = list(category_data.keys())
-task_counts = [len(category_data[category]) for category in category_names]
+# Filter the category_data dictionary based on the chosen category
+filtered_data = category_data.get(chosen_category, {})
 
-# Create a dataframe with the data
-df = pd.DataFrame({'Category': category_names, 'Task Count': task_counts})
+# Convert the filtered data into a DataFrame
+df = pd.DataFrame({'Category': list(filtered_data.keys()), 'Task Count': [len(tasks) for tasks in filtered_data.values()]})
 
-# Create the pie chart
-fig = px.pie(df, values='Task Count', names='Category', title='Task Distribution by Category')
+# Create the pie chart using Plotly
+fig = px.pie(df, values='Task Count', names='Category', title='Tasks nach Kategorie')
 
 # Display the chart
 fig.show()
+
