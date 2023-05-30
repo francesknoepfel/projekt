@@ -1,5 +1,5 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %} <!-- header einbinden -->
+{% include "navbar.jinja2" %} <!-- navbar einbinden -->
 
 <div class="container">
     <h1 class="mt-5">Neuer Task</h1>
@@ -7,7 +7,7 @@
         <div class="form-group">
             <label for="task_name">Task Name:</label>
             <input type="text" class="form-control" name="task_name" id="task_name"
-                   placeholder="Bitte gib deinen Task ein" required>
+                   placeholder="Bitte gib deinen Task ein." required>
         </div>
 
         <div class="form-group">
@@ -22,13 +22,17 @@
 
 
        <div class="form-group">
-    <label for="priority">Priorität:</label>
-    <select class="form-control" name="priority" id="priority">
-        <option value="tief">Tief</option>
-        <option value="medium">Medium</option>
-        <option value="hoch">Hoch</option>
-    </select>
-</div>
+           <label for="priority">Priorität:</label>
+           <select class="form-control" name="priority" id="priority">
+               <option value="tief">Tief</option>
+               <option value="medium">Medium</option>
+               <option value="hoch">Hoch</option>
+           </select>
+       </div>
+        <div class="form-group">
+           <label for="task_dauer">Dauer des Tasks:</label>
+            <input type="text" class="form-control" name="task_dauer" id="task_dauer" placeholder="Wie lange dauert es diesen Task zu erledigen." pattern="[0-9]+" required>
+       </div>
 
         <div class="form-group">
             <label for="list_name">Liste:</label>
@@ -97,7 +101,7 @@
 
 
 <style>
-    /* CSS-Stile für die hinzugefügten Aufgaben */
+    /* CSS-Style für die hinzugefügten Aufgaben */
     #task-list {
         max-height: 300px;
         overflow-y: auto;

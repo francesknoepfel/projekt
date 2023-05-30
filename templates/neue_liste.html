@@ -13,22 +13,22 @@
 
         <div class="form-group">
             <label for="existing_category">Kategorie</label> <!-- Label für die Kategorie -->
-            <input type="text" class="form-control" name="list_name" id="list_name"
+            <input type="text" class="form-control" name="existing_category" id="existing_category"
                    placeholder="Zu welcher Kategorie ordnest du diesen Task zu?"> <!-- Textfeld für die Kategorie -->
         </div>
 
-        <div class="form-group" id="new_category" style="display: none;"> <!-- Container für die neue Kategorie (anfangs ausgeblendet) -->
-            <label for="new_category_name">Kategorie:</label> <!-- Label für den Namen der neuen Kategorie -->
-            <select class="form-control" name="new_category_name" id="new_category_name"> <!-- Dropdown-Menü für die neue Kategorie -->
+        <div class="form-group" id="category" style="display: none;"> <!-- Container für die neue Kategorie (anfangs ausgeblendet) -->
+            <label for="category">Kategorie:</label> <!-- Label für den Namen der neuen Kategorie -->
+            <select class="form-control" name="category" id="category"> <!-- Dropdown-Menü für die neue Kategorie -->
                 <option value="" selected>Wähle eine Kategorie aus</option> <!-- Standardoption auswählen -->
                 {% for category in ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"] %}
                     <option value="{{ category }}">{{ category }}</option> <!-- Optionen für vorhandene Kategorien -->
                 {% endfor %}
-                <option value="new_category">Kategorie hinzufügen</option> <!-- Option zum Hinzufügen einer neuen Kategorie -->
+                <option value="category">Kategorie hinzufügen</option> <!-- Option zum Hinzufügen einer neuen Kategorie -->
             </select>
         </div>
 
-        <div class="form-group" id="new_category" style="display: none;"> <!-- Container für die neue Kategorie (anfangs ausgeblendet) -->
+        <div class="form-group" id="new_category_name" style="display: none;"> <!-- Container für die neue Kategorie (anfangs ausgeblendet) -->
             <label for="new_category_name">Name der neuen Kategorie:</label> <!-- Label für den Namen der neuen Kategorie -->
             <input type="text" class="form-control" name="new_category_name" id="new_category_name"
                    placeholder="Gib den Namen der neuen Kategorie ein"> <!-- Textfeld für den Namen der neuen Kategorie -->
@@ -41,26 +41,25 @@
 
 <div class="container mt-5">
     <h2>Hinzugefügte Listen</h2> <!-- Überschrift "Hinzugefügte Listen" -->
-   <!--   <ul class="list-group" id="task-list"> <!-- Liste für die hinzugefügten Tasks -->
+   <!--   <ul class="list-group" id="task-list">--> <!-- Liste für die hinzugefügten Tasks -->
        <!--  {% for task in tasks %}
         <li class="list-group-item">
-            <h5>{{ task.name }}</h5> <!-- Anzeige des Task-Namens -->
-           <!--  <p>Deadline: {{ task.deadline }}</p> <!-- Anzeige der Deadline -->
-          <!--   <p>Priorität: {{ task.priority }}</p> <!-- Anzeige der Priorität -->
-            <!-- <p>List Name: {{ task.list_name }}</p> <!-- Anzeige des Listen-Namens -->
-           <!--  <p>Category: {{ task.category }}</p> <!-- Anzeige der Kategorie -->
+            <h5>{{ task.name }}</h5> --><!-- Anzeige des Task-Namens -->
+           <!--  <p>Deadline: {{ task.deadline }}</p> --><!-- Anzeige der Deadline -->
+          <!--   <p>Priorität: {{ task.priority }}</p>--> <!-- Anzeige der Priorität -->
+            <!-- <p>List Name: {{ task.list_name }}</p> --><!-- Anzeige des Listen-Namens -->
+           <!--  <p>Category: {{ task.category }}</p> --><!-- Anzeige der Kategorie -->
       <!--   </li>
         {% endfor %}
-    </ul>
+    </ul>-->
 </div>
 
 
-<style>
+<!-- <style>
     /* CSS-Stile für die Liste der hinzugefügten Tasks */
     #task-list {
         max-height: 300px;
         overflow-y: auto;
-    }
-</style>
+    }-->
 
 {% include "footer.jinja2" %} <!-- Footer einbinden -->

@@ -1,3 +1,4 @@
+<!-- Ziel: dieses hier im index.html zu haben-->
 {% block content %}
   {% include "header.jinja2" %}
   {% include "navbar.jinja2" %}
@@ -13,7 +14,7 @@
         <p class="card-text">Category: {{ task.category }}</p>
       </div>
     </div>
-    <!-- Button to add another new task -->
+    <!-- Button um nochmals einen Task hinzufügen -->
     <form action="/neuer_task" method="GET">
       <input type="submit" value="Add Another New Task" class="btn btn-primary mt-3">
     </form>
