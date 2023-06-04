@@ -19,6 +19,10 @@ NOCH ABKLÄREN OB MÖGLICH - Aufgaben sortieren: Benutzer*innen können Aufgaben
 ## Verwendete Technologien
 
 - Flask: Das Backend der Anwendung wird mit dem Flask-Webframework erstellt, das eine solide Grundlage für die Verarbeitung von HTTP-Anfragen und die Verwaltung von Daten bietet.
+- render_template: wird zum Rendern von HTML-Vorlagen verwendet.
+- request: Wird für den Zugriff auf Anfragedaten vervwendet
+- Data: Dictionairies
+- get_list_names(): Liest die Namen aus einer JSON Datei und gibt die Liste mit Namen zurück
 - HTML/CSS: Die Benutzeroberfläche wird mit HTML zur Strukturierung des Inhalts und CSS zur Gestaltung und Layouterstellung entworfen.
 - Bootstrap: Das Bootstrap-Framework wird für reaktionsfähige und für Mobilgeräte geeignete Designkomponenten verwendet, um eine konsistente und visuell ansprechende Benutzererfahrung sicherzustellen.
 (- JavaScript: Einige interaktive Funktionen und clientseitige Funktionalitäten können mit JavaScript implementiert werden.)
