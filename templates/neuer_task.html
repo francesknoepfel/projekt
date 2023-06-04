@@ -2,7 +2,8 @@
 {% include "navbar.jinja2" %} <!-- navbar einbinden -->
 
 <div class="container">
-    <h1 class="mt-5">Neuer Task</h1>
+    <h1 class="mt-5 display-4">Neuer Task</h1>
+    <p class="card-text text-muted"> Trage hier alle nötigen Infos zu deinen Tasks ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
     <form action="/save_task" method="POST">
         <div class="form-group">
             <label for="task_name">Task Name:</label>
@@ -20,78 +21,49 @@
             </div>
         </div>
 
-
-       <div class="form-group">
-           <label for="priority">Priorität:</label>
-           <select class="form-control" name="priority" id="priority">
-               <option value="tief">Tief</option>
-               <option value="medium">Medium</option>
-               <option value="hoch">Hoch</option>
-           </select>
-       </div>
         <div class="form-group">
-           <label for="task_dauer">Dauer des Tasks:</label>
-            <input type="text" class="form-control" name="task_dauer" id="task_dauer" placeholder="Wie lange dauert es diesen Task zu erledigen." pattern="[0-9]+" required>
-       </div>
-
-        <div class="form-group">
-            <label for="list_name">Liste:</label>
-            <input type="text" class="form-control" name="list_name" id="list_name"
-                   placeholder="Willst du diesen Task zu einer Liste hinzufügen?">
-        </div>
-        <div class="form-group">
-            <label for="category">Kategorie:</label>
-            <select class="form-control" name="category" id="category">
-                <option value="" selected>Wähle eine Kategorie aus</option>
-                {% for category in categories %}
-                    <option value="{{ category }}">{{ category }}</option>
-                {% endfor %}
-
-                <option value="new_category">Neue Kategorie hinzufügen</option>
+            <label for="priority">Priorität:</label>
+            <select class="form-control" name="priority" id="priority">
+                <option value="" selected>Wähle aus welche Priorität dieser Task hat. </option>
+                <option value="Tief">Tief</option>
+                <option value="Medium">Medium</option>
+                <option value="Hoch">Hoch</option>
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="task_duration">Dauer des Tasks:</label>
+            <input type="text" class="form-control" name="task_duration" id="task_duration"
+                   placeholder="Wie viele Minuten dauert es diesen Task zu erledigen? Nur Zahleneingabe." pattern="[0-9]+" required>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select class="form-control" name="category" id="category">
+                <option value="" selected>Wähle ein Kategorie aus. </option>
+                {% for category in ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"] %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+                <option value="new_category">Kategorie hinzufügen</option>
+            </select>
+        </div>
 
         <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
 
-
-     {% if show_task_saved %}
+    {% if show_task_saved %}
     <!-- Task gespeichert -->
     <h1 class="mt-5">Eintrag gespeichert</h1>
+    <p class="card-text text-muted"> Alle deine gespeicherten Einträge kannst du auf der Startseite und unter Task Übersicht finden.</p>
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ task.name }}</h5>
-        <p class="card-text">Deadline: {{ task.deadline }}</p>
-        <p class="card-text">Priority: {{ task.priority }}</p>
-        <p class="card-text">List Name: {{ task.list_name }}</p>
-        <p class="card-text">Category: {{ task.category }}</p>
-      </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ task.name }}</h5>
+            <p class="card-text">Deadline: {{ task.deadline }}</p>
+            <p class="card-text">Priority: {{ task.priority }}</p>
+            <p class="card-text">Category: {{ task.category }}</p>
+        </div>
     </div>
-    <!-- Button um neuen Task hinzufügen -->
-    <form action="/neuer_task" method="GET">
-      <input type="submit" value="Nochmals einen Task hinzufügen" class="btn btn-primary mt-3">
-    </form>
     {% endif %}
-  </div>
-
-
-
-<div class="container mt-5">
-    <h2>Hinzugefügte Tasks</h2>
-    <ul class="list-group" id="task-list">
-        {% for task in tasks %}
-        <li class="list-group-item">
-            <h5>{{ task.name }}</h5>
-            <p>Deadline: {{ task.deadline }}</p>
-            <p>Priority: {{ task.priority }}</p>
-            <p>List Name: {{ task.list_name }}</p>
-            <p>Category: {{ task.category }}</p>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-
 
 
 <style>

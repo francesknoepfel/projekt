@@ -1,33 +1,72 @@
 {% include "header.jinja2" %} <!-- header einbinden -->
 {% include "navbar.jinja2" %} <!-- navbar einbinden -->
 
+<style>
+    /* zeigt an nach was jetzt sortiert wurde */
+    th.active {
+        background-color: yellow;
+    }
+</style>
+
+
 <div class="container">
   <h1 class="mt-5 display-4">Willkommen zu Tick Task!</h1>
-  <!-- <h5> Auf Tick Task kannst du alle deine wichtigen Tasks und To Dos festhalten und abhacken. Du kannst neue Einträge machen und diese Listen und Kategorien zuordnen.
-  <br> Wenn du den Tasks eine Priorität oder ein Datum zuordnest, siehst du auf einen Blick was als nächstes ansteht. <br>
-  So kannst du über Chaos eine Übersicht haben. </h5> -->
-  <h2 class="mt-5">Task Übersicht</h2>
-  <!-- Task Übersicht -->
-  <table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Deadline</th>
-            <th>Priority</th>
-            <th>Category</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for task in tasks %}
-        <tr>
-            <td>{{ task.name }}</td>
-            <td>{{ task.deadline }}</td>
-            <td>{{ task.priority }}</td>
-            <td>{{ task.category }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-  </table>
+    <p class="card-text text-muted">
+    Mit Tick Task kannst du alle deine wichtigen Tasks und To-Dos festhalten und abhacken.
+    Du kannst neue Einträge machen und diese Listen und Kategorien zuordnen.
+    Wenn du den Tasks eine Priorität oder ein Datum zuordnest, siehst du auf einen Blick, was als nächstes ansteht.
+    So kannst du über Chaos eine Übersicht haben.
+</p>
+
+    <h3 class="mt-5 display-6">Task Übersicht</h3>
+    <!-- Task Übersicht -->
+    <p class="card-text text-muted"> Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th {% if sort_by == 'priority' %}class="active"{% endif %}>Name</th>
+                <th {% if sort_by == 'deadline' %}class="active"{% endif %}>Deadline</th>
+                <th {% if sort_by == 'priority' %}class="active"{% endif %}>Priorität</th>
+                <th {% if sort_by == 'category' %}class="active"{% endif %}>Kategorie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.category }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+
+{% set categories = [] %}
+{% for task in tasks %}
+    {% if task.category not in categories %}
+        {% set _ = categories.append(task.category) %}
+    {% endif %}
+{% endfor %}
+
+{% for category in categories %}
+<div class="container">
+<h3 class="mt-5 display-6">{{ category }}</h3>
+    <ul class="list-group" id="task-list">
+        {% for task in tasks %}
+        {% if task.category == category %}
+        <li class="list-group-item">
+            <h5>{{ task.name }}</h5>
+            <p>Deadline: {{ task.deadline }}</p>
+            <p>Priority: {{ task.priority }}</p>
+            <p>Category: {{ task.category }}</p>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endfor %}
 
 {% include "footer.jinja2" %}
