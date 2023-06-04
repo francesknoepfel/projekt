@@ -39,27 +39,22 @@
             <input type="text" class="form-control" name="list_name" id="list_name"
                    placeholder="Willst du diesen Task zu einer Liste hinzufügen?">
         </div>
-
         <div class="form-group">
             <label for="category">Kategorie:</label>
             <select class="form-control" name="category" id="category">
                 <option value="" selected>Wähle eine Kategorie aus</option>
-                {% for category in ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"] %}
+                {% for category in categories %}
                     <option value="{{ category }}">{{ category }}</option>
                 {% endfor %}
-                <option value="new_category">Kategorie hinzufügen</option>
+
+                <option value="new_category">Neue Kategorie hinzufügen</option>
             </select>
         </div>
 
-        <div class="form-group" id="new_category" style="display: none;">
-            <label for="new_category_name">Name der neuen Kategorie:</label>
-            <input type="text" class="form-control" name="new_category_name" id="new_category_name"
-                   placeholder="Gib den Namen der neuen Kategorie ein">
-            <small id="new_category_help" class="form-text text-muted">Gib den Namen der neuen Kategorie ein.</small>
-        </div>
 
         <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
+
 
      {% if show_task_saved %}
     <!-- Task gespeichert -->
@@ -79,7 +74,6 @@
     </form>
     {% endif %}
   </div>
-
 
 
 
