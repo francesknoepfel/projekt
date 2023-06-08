@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from datenbank import write_json, read
+from categories import categories
+
 
 app = Flask(__name__)
 
@@ -20,13 +22,13 @@ def index():
     list_names = get_list_names()  # Get list names
 
     # Abrufen von Tasks und Listen auf category_data basiert
-    tasks = []
+    tasks_list = []
     lists = []
     for category in category_data.values():
-        tasks.extend(category['tasks'])
+        tasks_list.extend(category['tasks'])
         lists.extend(category['lists'])
 
-    return render_template('index.html', list_names=list_names, tasks=tasks, lists=lists, category_data=category_data)
+    return render_template('index.html', list_names=list_names, tasks_list=tasks_list, lists=lists, category_data=category_data)
 
 @app.route('/neuer_task')
 def neuer_task(category_data=None, show_task_saved=False, task=None):
@@ -35,8 +37,10 @@ def neuer_task(category_data=None, show_task_saved=False, task=None):
     # Übergabe der Liste der vorhandenen Kategorien an die Vorlage.
     categories = ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"]
 
-    return render_template('neuer_task.html', list_names=list_names, category_data=category_data, show_task_saved=show_task_saved, task=task)
+    return render_template('neuer_task.html', list_names=list_names, categories=categories, show_task_saved=show_task_saved, task=task)
 
+
+tasks = []  # Initialize tasks as an empty list
 @app.route('/save_task', methods=['POST'])
 def save_task():
     task_name = request.form['task_name']
@@ -51,29 +55,42 @@ def save_task():
         'deadline': deadline,
         'priority': priority,
         'category': category,
-        'duration': task_duration  # Dauer des Tasks wird im dictionary included
+        'duration': task_duration,  # Dauer des Tasks wird im dictionary included
+        'finished': False  # New field to track task completion status
     }
 
-    # Task wird zum task list hinzugefügt
-    tasks = []
-    tasks.append(task)
-
-    if task['category'] == "new_category":
-        new_category = request.form['new_category_name']
-        # Neue Kategorie zur Kategorie Auswahl hinzufügen
-        categories.append(new_category)
-        # Die Auswahl wird aktualisiert mit der neuen Kategorie
-        category_data['categories'] = categories
-
-        task['category'] = new_category
-
-    category = task['category']
+    # Add the task to the appropriate category
     if category in category_data:
         category_data[category]['tasks'].append(task)
     else:
         category_data[category] = {'tasks': [task], 'lists': []}
 
-    return neuer_task(category_data=category_data, show_task_saved=True, task=task)
+    # Append the task to the global tasks list
+    tasks.append(task)
+
+    # Sort the tasks based on priority
+    tasks.sort(key=lambda x: x['priority'])
+
+    list_names = get_list_names()  # list names holen
+
+    # Übergabe der Liste der vorhandenen Kategorien an die Vorlage.
+    categories = ["Schule", "Haushalt", "Finanzen", "Familie", "Einkauf", "Sonstiges"]
+
+    return render_template('neuer_task.html', list_names=list_names, category_data=category_data, show_task_saved=True, task=task, tasks=tasks)
+
+
+
+@app.route('/mark_task_finished', methods=['POST'])
+def mark_task_finished():
+    task_id = int(request.form['task_id'])
+    tasks_list = []
+    for category in category_data.values():
+        tasks_list.extend(category['tasks'])
+
+    if task_id < len(tasks_list):
+        tasks_list[task_id]['finished'] = True
+
+    return index()
 
 if __name__ == '__main__':
     app.run(debug=True, port=5003)
