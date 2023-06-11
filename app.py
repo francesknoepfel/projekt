@@ -30,6 +30,7 @@ def graph():
     graph_html = fig.to_html(full_html=False)
 
     return render_template('graph.html', graph_html=graph_html)
+
 def get_list_names():
     lists = read('daten/lists.json')
     return [lst['name'] for lst in lists]
@@ -77,42 +78,14 @@ def load_categories():
 
 # Load categories at the beginning
 categories = load_categories()
+
 @app.route('/neuer_task', methods=['GET', 'POST'])
 def neuer_task():
     if request.method == 'POST':
-        task_name = request.form['task_name']
-        deadline = request.form['deadline']
-        priority = request.form['priority']
-        category = request.form['category']
-        task_duration = request.form['task_duration']
-
-        if category == 'new_category':
-            new_category = request.form.get('new_category', '').strip()
-            if new_category and new_category not in categories:
-                categories.append(new_category)
-                category = new_category
-
-        task = {
-            'name': task_name,
-            'deadline': deadline,
-            'priority': priority,
-            'category': category,
-            'duration': task_duration,
-            'finished': False
-        }
-
-        if category in category_data:
-            category_data[category]['tasks'].append(task)
-        else:
-            category_data[category] = {'tasks': [task], 'lists': []}
-
-        show_task_saved = True
-
-        list_names = get_list_names()
-        return render_template('neuer_task.html', show_task_saved=show_task_saved, task=task, list_names=list_names, categories=categories)
+        # Handle the form submission within the save_task function
+        return save_task()
 
     list_names = get_list_names()
-
     return render_template('neuer_task.html', list_names=list_names, categories=categories)
 
 @app.route('/save_task', methods=['POST'])
@@ -142,6 +115,9 @@ def save_task():
             'finished': False
         }
 
+        # Print the task information
+        print("Saving task:", task)
+
         if category in category_data:
             category_data[category]['tasks'].append(task)
         else:
@@ -149,8 +125,11 @@ def save_task():
 
         show_task_saved = True
 
-    return render_template('neuer_task.html', show_task_saved=show_task_saved, task=task)
+        list_names = get_list_names()
+        return render_template('task_saved.html', task=task)
 
+    # Add a print statement to indicate that the task has been saved
+    print("Task saved successfully.")
 
 @app.route('/mark_task_finished', methods=['POST'])
 def mark_task_finished():
