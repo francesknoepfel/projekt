@@ -1,19 +1,89 @@
-{% block content %}
-  {% include "header.jinja2" %}
-  {% include "navbar.jinja2" %}
+{% include "header.jinja2" %} <!-- header einbinden -->
+{% include "navbar.jinja2" %} <!-- navbar einbinden -->
 
-  <div class="container">
-    <h1 class="mt-5">Task Saved</h1>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ task.name }}</h5>
-        <p class="card-text">Deadline: {{ task.deadline }}</p>
-        <p class="card-text">Priority: {{ task.priority }}</p>
-        <p class="card-text">List Name: {{ task.list_name }}</p>
-        <p class="card-text">Category: {{ task.category }}</p>
-      </div>
+<style>
+    /* zeigt an nach was jetzt sortiert wurde */
+    th.active {
+        background-color: yellow;
+    }
+    .finished-task {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
+
+<div class="container">
+    <h3 class="mt-5 display-6">Task Übersicht</h3>
+    <!-- Task Übersicht -->
+    <p class="card-text text-muted"> Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
+    <form action="/" method="get" class="mb-3">
+        <div class="form-group">
+            <label for="sort">Sortieren nach:</label>
+            <select name="sort" id="sort" class="form-control" onchange="this.form.submit()">
+                <option value="priority" {% if sort_option == 'priority' %}selected{% endif %}>Priorität</option>
+                <option value="deadline" {% if sort_option == 'deadline' %}selected{% endif %}>Deadline</option>
+                <option value="category" {% if sort_option == 'category' %}selected{% endif %}>Kategorie</option>
+            </select>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>  <!-- New column for checkboxes -->
+                <th>Name</th>
+                <th>Deadline</th>
+                <th>Priorität</th>
+                <th>Kategorie</th>
+                <th>Notizen</th>  <!-- New column for notes -->
+                <th>Dauer</th>  <!-- New column for task duration -->
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+        <tr {% if task.finished %}class="finished-task"{% endif %}>
+            <td>
+                <input type="checkbox" {% if task.finished %}checked{% endif %}
+                   onchange="this.form.submit();">  <!-- Checkbox for marking task as finished -->
+            </td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.deadline }}</td>  <!-- Display the deadline without formatting -->
+            <td>{{ task.priority }}</td>
+            <td>{{ task.category }}</td>
+            <td>{{ task.notes }}</td>  <!-- Display notes in the new column -->
+            <td>{{ task.duration }}</td>  <!-- Display task duration in the new column -->
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="mt-5 display-6">Kategorien</h3>
+    <!-- Tasks by Category -->
+    <p class="card-text text-muted">Deine Tasks nach Kategorie sortiert:</p>
+    <div class="d-flex flex-wrap">
+        {% for category_name, category in category_data.items() %}
+        <div class="card m-2">
+            <div class="card-header">
+                <h5>{{ category_name }}</h5>
+            </div>
+            <div class="card-body">
+                {% for task in category['tasks'] %}
+                <div class="card mb-2 {% if task.finished %}finished-task{% endif %}">
+                    <div class="card-body">
+                        <input type="checkbox" {% if task.finished %}checked{% endif %} onchange="this.form.submit();">
+                        <span>{{ task.name }}</span>
+                        <div class="mt-2">
+                            <small class="text-muted">Deadline: {{ task.deadline }}</small>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted">Notes: {{ task.notes }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
-  </div>
+</div>
 
-  {% include "footer.jinja2" %}
-{% endblock %}
+{% include "footer.jinja2" %}

@@ -4,20 +4,23 @@
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
             <span class="fs-4">Tick Task</span>
         </a>
-
         <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a href="{{ url_for('index') }}" class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="Home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url_for('neuer_task') }}" class="nav-link {% if request.path == '/neuer_task' %}active{% endif %}">Neuer Task</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url_for('index') }}" class="nav-link {% if request.path == '/task_overview' %}active{% endif %}">Task Übersicht</a>
-            </li>
-            <li class="nav-item">
-                <a href="/mein_projekt" class="nav-link {% if request.path == '/mein_projekt' %}active{% endif %}">Über das Projekt</a>
-            </li>
+        <li class="nav-item">
+        <a href="{{ url_for('index') }}" class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="Home">Home</a>
+        </li>
+        <li class="nav-item">
+        <a href="{{ url_for('neuer_task') }}" class="nav-link {% if request.path == '/neuer_task' %}active{% endif %}">Neuer Task</a>
+        </li>
+        <li class="nav-item">
+        <a href="{{ url_for('task_overview') }}" class="nav-link {% if request.path == '/task_overview' %}active{% endif %}">Task Übersicht</a>
+        </li>
+        <li class="nav-item">
+        <a href="{{ url_for('graph') }}" class="nav-link {% if request.path == '/graph' %}active{% endif %}">Graph</a>
+        </li>
+        <li class="nav-item">
+        <a href="/mein_projekt" class="nav-link {% if request.path == '/mein_projekt' %}active{% endif %}">Über das Projekt</a>
+        </li>
         </ul>
+
     </header>
 </div>

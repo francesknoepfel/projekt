@@ -2,8 +2,15 @@
 {% include "navbar.jinja2" %}
 
 <form method="POST">
-    <input type="text" name="kategorie_name" placeholder="Bitte gib den Namen der Kategorie ein">
-    <form method="POST">
-    <input type="text" name="priority" placeholder="Bitte gib an welche Priorität diese Kategorie hat">
-    <button type="submit">Senden</button>
-        {% include "footer.jinja2" %}
+    <div class="form-group">
+        <label for="kategorie_name">Kategorie Name:</label>
+        <input type="text" class="form-control" name="kategorie_name" id="kategorie_name" placeholder="Bitte gib den Namen der Kategorie ein">
+    </div>
+    <div class="form-group">
+        <label for="priority">Priorität:</label>
+        <input type="text" class="form-control" name="priority" id="priority" placeholder="Bitte gib an, welche Priorität diese Kategorie hat">
+    </div>
+    <button type="submit" class="btn btn-primary">Senden</button>
+</form>
+
+{% include "footer.jinja2" %}
