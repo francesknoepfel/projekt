@@ -26,13 +26,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th></th>  <!-- New column for checkboxes -->
+                <th></th>  <!-- säule für abhaken -->
                 <th>Name</th>
                 <th>Deadline</th>
                 <th>Priorität</th>
                 <th>Kategorie</th>
-                <th>Notizen</th>  <!-- New column for notes -->
-                <th>Dauer</th>  <!-- New column for task duration -->
+                <th>Notizen</th>  <!--  -->
+                <th>Dauer</th>  <!-- -->
             </tr>
         </thead>
         <tbody>
@@ -40,28 +40,28 @@
                 <tr {% if task.finished %}class="finished-task"{% endif %}>
                     <td>
                         <input type="checkbox" {% if task.finished %}checked{% endif %}
-                               onchange="this.form.submit();">  <!-- Checkbox for marking task as finished -->
+                               onchange="this.form.submit();">  <!-- abhaken von tasks -->
                     </td>
                     <td>{{ task.name }}</td>
-                    <td>{{ task.deadline }}</td>  <!-- Display the deadline without formatting -->
+                    <td>{{ task.deadline }}</td>  <!--  -->
                     <td>{{ task.priority }}</td>
                     <td>{{ task.category }}</td>
-                    <td>{{ task.notes }}</td>  <!-- Display notes in the new column -->
-                    <td>{{ task.duration }}</td>  <!-- Display task duration in the new column -->
+                    <td>{{ task.notes }}</td>  <!--  -->
+                    <td>{{ task.duration }}</td>  <!--  -->
                 </tr>
             {% endfor %}
             {% for task in other_tasks %}
                 <tr {% if task.finished %}class="finished-task"{% endif %}>
                     <td>
                         <input type="checkbox" {% if task.finished %}checked{% endif %}
-                               onchange="this.form.submit();">  <!-- Checkbox for marking task as finished -->
+                               onchange="this.form.submit();">  <!-- abhaken von tasks -->
                     </td>
                     <td>{{ task.name }}</td>
-                    <td>{{ task.deadline }}</td>  <!-- Display the deadline without formatting -->
+                    <td>{{ task.deadline }}</td>  <!--  -->
                     <td>{{ task.priority }}</td>
                     <td>{{ task.category }}</td>
-                    <td>{{ task.notes }}</td>  <!-- Display notes in the new column -->
-                    <td>{{ task.duration }}</td>  <!-- Display task duration in the new column -->
+                    <td>{{ task.notes }}</td>  <!---->
+                    <td>{{ task.duration }}</td>  <!--  -->
                 </tr>
             {% endfor %}
         </tbody>

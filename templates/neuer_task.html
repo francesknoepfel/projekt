@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="mt-5 display-4">Neuer Task</h1>
     <p class="card-text text-muted">Trage hier alle nötigen Infos zu deinen Tasks ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
-    <form action="/task_saved" method="POST">
+    <form action="/save_task" method="POST">
         <div class="form-group">
             <label for="task_name">Task Name:</label>
             <input type="text" class="form-control" name="task_name" id="task_name" placeholder="Bitte gib deinen Task ein." required>
@@ -40,24 +40,24 @@
                 <option value="180">3 Stunden</option>
             </select>
         </div>
+        <button type="submit" class="btn btn-primary">Generate Graph</button>
 
-<div class="form-group">
-    <label for="category">Kategorie:</label>
-    <select class="form-control" name="category" id="category">
-        <option value="" selected>Wähle eine Kategorie aus.</option>
-        {% for category in categories %}
-        <option value="{{ category }}">{{ category }}</option>
-        {% endfor %}
-        <option value="new_category">Neue Kategorie hinzufügen</option>
-    </select>
-</div>
-
-{% if category == 'new_category' %}
-<div class="form-group">
-    <label for="new_category">Neue Kategorie:</label>
-    <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein." required>
-</div>
-{% endif %}
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select class="form-control" name="category" id="category">
+                <option value="" selected>Wähle eine Kategorie aus.</option>
+                {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+                <option value="new_category">Neue Kategorie hinzufügen</option>
+            </select>
+        </div>
+        {% if category == 'new_category' %}
+        <div class="form-group">
+            <label for="new_category">Neue Kategorie:</label>
+            <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein." required>
+        </div>
+        {% endif %}
 
 
 
@@ -69,7 +69,8 @@
             <label for="notes">Sonstige Notizen:</label>
             <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deinem Task vermerken."></textarea>
         </div>
-        <input type="submit" name="submit" value="Eintrag speichern" class="btn btn-primary">
+
+        <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
 
     {% if show_task_saved %}
