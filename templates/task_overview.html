@@ -14,6 +14,7 @@
 
 <div class="container">
     <h3 class="mt-5 display-6">Task Übersicht</h3>
+    <button type="submit" class="btn btn-primary">Generate Graph</button>
     <!-- Task Übersicht -->
     <p class="card-text text-muted"> Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
     <form action="/" method="get" class="mb-3">
@@ -39,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for task in tasks %}
+        {% for task in tasks_list %}
         <tr {% if task.finished %}class="finished-task"{% endif %}>
             <td>
                 <input type="checkbox" {% if task.finished %}checked{% endif %}

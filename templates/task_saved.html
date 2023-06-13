@@ -2,23 +2,34 @@
   {% include "header.jinja2" %}
   {% include "navbar.jinja2" %}
 
-  <div class="container">
-    <h1 class="mt-5">Task Saved</h1>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ task.name }}</h5>
-        <p class="card-text">Deadline: {{ task.deadline }}</p>
-        <p class="card-text">Priority: {{ task.priority }}</p>
-        <p class="card-text">List Name: {{ task.list_name }}</p>
-        <p class="card-text">Category: {{ task.category }}</p>
-        <p class="card-text">Notes: {{ task.notes }}</p>  <!-- Add this line -->
+  {% if task %}
+    <!-- Task gespeichert -->
+    <div class="container">
+      <h1 class="mt-5">Eintrag gespeichert</h1>
+      <p class="card-text text-muted">Dein Eintrag wurde gespeichert:</p>
+      <div class="card">
+        <div class="card-body">
+          <h3>Task Saved</h3>
+          <p>Name: {{ task.name }}</p>
+          <p>Deadline: {{ task.deadline }}</p>
+          <p>Priority: {{ task.priority }}</p>
+          <p>Category: {{ task.category }}</p>
+          <p>Duration: {{ task.duration }}</p>
+          <p>Notes: {{ task.notes }}</p>
+        </div>
       </div>
+
+      <!-- Button to add another task -->
+      <form action="/neuer_task" method="GET">
+        <input type="submit" value="Noch einen Task hinzufügen" class="btn btn-primary mt-3">
+      </form>
+
+      <!-- Button for task overview -->
+      <form action="/task_overview" method="GET">
+        <input type="submit" value="Zur Task Übersicht" class="btn btn-primary mt-3">
+      </form>
     </div>
-    <!-- Button um nochmals einen Task hinzufügen -->
-    <form action="/neuer_task" method="GET">
-      <input type="submit" value="Add Another New Task" class="btn btn-primary mt-3">
-    </form>
-  </div>
+  {% endif %}
 
   {% include "footer.jinja2" %}
 {% endblock %}
