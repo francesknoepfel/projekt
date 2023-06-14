@@ -16,45 +16,44 @@
     <h3 class="mt-5 display-6">Task Übersicht</h3>
     <!-- Task Übersicht -->
     <p class="card-text text-muted"> Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
-    <form action="/" method="get" class="mb-3">
-        <div class="form-group">
-            <label for="sort">Sortieren nach:</label>
-            <select name="sort" id="sort" class="form-control" onchange="this.form.submit()">
-                <option value="priority" {% if sort_option == 'priority' %}selected{% endif %}>Priorität</option>
-                <option value="deadline" {% if sort_option == 'deadline' %}selected{% endif %}>Deadline</option>
-                <option value="category" {% if sort_option == 'category' %}selected{% endif %}>Kategorie</option>
-            </select>
-        </div>
-    </form>
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>  <!-- Säule für Abhaken -->
-                <th>Name</th>
-                <th>Deadline</th>
-                <th>Priorität</th>
-                <th>Kategorie</th>
-                <th>Notizen</th>
-                <th>Dauer</th>
-            </tr>
-        </thead>
-        <tbody>
+<form action="/" method="post" class="mb-3">
+    <div class="form-group">
+        <label for="sort">Sortieren nach:</label>
+        <select name="sort" id="sort" class="form-control">
+            <option value="priority" {% if sort_option == 'priority' %}selected{% endif %}>Priorität</option>
+            <option value="deadline" {% if sort_option == 'deadline' %}selected{% endif %}>Deadline</option>
+            <option value="category" {% if sort_option == 'category' %}selected{% endif %}>Kategorie</option>
+        </select>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>  <!-- Säule für Abhaken -->
+            <th>Name</th>
+            <th>Deadline</th>
+            <th>Priorität</th>
+            <th>Kategorie</th>
+            <th>Notizen</th>
+            <th>Dauer</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for task in tasks %}
         <tr {% if task.finished %}class="finished-task"{% endif %}>
             <td>
-                <input type="checkbox" {% if task.finished %}checked{% endif %}
-                   onchange="this.form.submit();">  <!-- Abhaken der Tasks -->
+                <input type="checkbox" {% if task.finished %}checked{% endif %} name="completed_task" value="{{ task.id }}">
             </td>
             <td>{{ task.name }}</td>
-            <td>{{ task.deadline }}</td>  <!---->
+            <td>{{ task.deadline }}</td>
             <td>{{ task.priority }}</td>
             <td>{{ task.category }}</td>
             <td>{{ task.notes }}</td>
-            <td>{{ task.duration }}</td>
+            <td>{{ task.task_duration }}</td>  <!-- Display task duration -->
         </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
     <h3 class="mt-5 display-6">Kategorien</h3>
     <!-- Tasks nach Kategorie -->

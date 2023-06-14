@@ -1,9 +1,9 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %} <!-- header einbinden -->
+{% include "navbar.jinja2" %} <!-- navbar einbinden -->
 
-    <title>Graph</title>
-</head>
-<body>
-    {{ graph_html | safe }}
+<div class="container">
+    <h1 class="mt-5 display-4">Task Fortschritt</h1>
+    {{ graph_html|safe }}
+</div>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %} <!-- Footer einbinden -->

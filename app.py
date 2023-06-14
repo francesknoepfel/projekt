@@ -1,53 +1,55 @@
-from flask import Flask, render_template, request
-# wieso ist write_json nicht aktiv?
-from datenbank import write_json, read
+from flask import Flask, render_template, request, redirect
 from categories import categories
 import plotly.express as px
-import re
-import os
+import plotly.graph_objects as go
+
 
 app = Flask(__name__)
 
-# Dictionary zum Speichern von Aufgaben und Kategoriedaten
+# Dictionary to store task and category data
 category_data = {}
 
 @app.route('/mein_projekt')
 def mein_projekt():
     return render_template('mein_projekt.html')
 
-
 @app.route('/graph')
 def graph():
-    #
-    chart_data = {
-        'categories': ['Category 1', 'Category 2', 'Category 3'],
-        'values': [10, 20, 30]
-    }
-
-    #
-    fig = px.pie(chart_data, values='values', names='categories', labels={'categories':'Category Names'})
-
-    # Diagrammw wird in HTML konvertiert
-    graph_html = fig.to_html(full_html=False)
-
-    return render_template('graph.html', graph_html=graph_html)
-def get_list_names():
-    lists = read('daten/lists.json')
-    return [lst['name'] for lst in lists]
-
-@app.route('/')
-def index():
-    sort_option = request.args.get('sort')  # Ausgewählte sortieroptiuon aus dem URL-Parameter wird abgerufen
-
-    list_names = get_list_names()  # list namen werden geholt
-
-    # Tasks aus allen Kategorien werden in eine einzige Liste zusammengeführt
     tasks_list = []
     for category in category_data.values():
         tasks_list.extend(category['tasks'])
 
-    # Tasks werden basierend auf der ausgewählten Option sortiert
-    # Sort the tasks based on the selected option
+    completed_tasks = sum(1 for task in tasks_list if task['finished'])
+    incomplete_tasks = sum(1 for task in tasks_list if not task['finished'])
+
+    # Create a bar chart
+    data = [
+        go.Bar(x=['Completed Tasks', 'Incomplete Tasks'], y=[completed_tasks, incomplete_tasks])
+    ]
+
+    layout = go.Layout(title='Task Completion Status', xaxis={'title': 'Task Status'}, yaxis={'title': 'Number of Tasks'})
+
+    fig = go.Figure(data=data, layout=layout)
+
+    graph_html = fig.to_html(full_html=False)
+
+    return render_template('graph.html', graph_html=graph_html)
+
+def get_list_names():
+    # Replace this function with your implementation
+    # to retrieve list names from your data source
+    return []
+
+@app.route('/')
+def index():
+    sort_option = request.args.get('sort')
+
+    list_names = get_list_names()
+
+    tasks_list = []
+    for category in category_data.values():
+        tasks_list.extend(category['tasks'])
+
     if sort_option == 'priority':
         tasks_list.sort(key=lambda x: x['priority'])
     elif sort_option == 'deadline':
@@ -55,37 +57,28 @@ def index():
     elif sort_option == 'category':
         tasks_list.sort(key=lambda x: x['category'])
 
-    # Tasks werden nach höchster Priorität filtriert
     highest_priority_tasks = [task for task in tasks_list if task['priority'] == 'High']
-    # Verbleibende Aufgaben nach anderen Kategorien filtern
     other_tasks = [task for task in tasks_list if task['priority'] != 'High']
 
     return render_template('index.html', list_names=list_names, highest_priority_tasks=highest_priority_tasks, other_tasks=other_tasks, category_data=category_data, sort_option=sort_option)
 
 @app.route('/task_overview')
 def task_overview():
-    # Tasks von allen Kategorien werden in eine einzige liste vereint
     tasks_list = []
     for category in category_data.values():
         tasks_list.extend(category['tasks'])
 
     return render_template('task_overview.html', tasks=tasks_list, category_data=category_data)
 
-#
-def load_categories():
-    with open('categories.txt', 'r') as file:
-        categories = [line.strip() for line in file]
-    return categories
-
-categories = load_categories()
 @app.route('/neuer_task', methods=['GET', 'POST'])
 def neuer_task():
     if request.method == 'POST':
         task_name = request.form['task_name']
         deadline = request.form['deadline']
-        priority = request.form['priority']
+        priority = 'Hoch'  # Set the priority to 'Hoch'
         category = request.form['category']
         task_duration = request.form['task_duration']
+        notes = request.form['notes']
 
         if category == 'new_category':
             new_category = request.form.get('new_category', '').strip()
@@ -98,7 +91,8 @@ def neuer_task():
             'deadline': deadline,
             'priority': priority,
             'category': category,
-            'duration': task_duration,
+            'task_duration': task_duration,
+            'notes': notes,
             'finished': False
         }
 
@@ -107,13 +101,10 @@ def neuer_task():
         else:
             category_data[category] = {'tasks': [task], 'lists': []}
 
-        show_task_saved = True
-
         list_names = get_list_names()
-        return render_template('neuer_task.html', show_task_saved=show_task_saved, task=task, list_names=list_names, categories=categories)
+        return render_template('index.html', list_names=list_names, category_data=category_data)
 
     list_names = get_list_names()
-
     return render_template('neuer_task.html', list_names=list_names, categories=categories)
 
 @app.route('/save_task', methods=['POST'])
@@ -124,22 +115,29 @@ def save_task():
         priority = request.form['priority']
         category = request.form['category']
         task_duration = request.form['task_duration']
+        notes = request.form['notes']
 
-        # Wird abgechcekt ob eine neue kategorie ausgewählt wurde
         if category == 'new_category':
-            new_category = request.form['new_category']
-            category = new_category.strip()  #
+            new_category = request.form.get('new_category', '').strip()
+            if new_category and new_category not in categories:
+                categories.append(new_category)
+                category = new_category
 
-            # neue kategorie wird zu kategorie liste hinzugefügt wenn sie nicht shcon exisitiert
-            if category not in categories:
-                categories.append(category)
+        # Convert task_duration to minutes or hours
+        task_duration = int(task_duration)
+        duration_unit = 'Minuten'
+
+        if task_duration >= 60:
+            task_duration = task_duration // 60
+            duration_unit = 'Stunden'
 
         task = {
             'name': task_name,
             'deadline': deadline,
             'priority': priority,
             'category': category,
-            'duration': task_duration,
+            'task_duration': f'{task_duration} {duration_unit}',
+            'notes': notes,
             'finished': False
         }
 
@@ -148,10 +146,23 @@ def save_task():
         else:
             category_data[category] = {'tasks': [task], 'lists': []}
 
-        show_task_saved = True
+        # Redirect the user to task_saved.html
+        return redirect("/task_saved")
 
-    return render_template('neuer_task.html', show_task_saved=show_task_saved, task=task)
+@app.route('/task_saved')
+def task_saved():
+    # Retrieve the recently saved task from the category_data
+    # or database and pass it to the template
+    task = {
+        'name': 'Task Name',
+        'deadline': '2023-06-15',
+        'priority': 'Hoch',
+        'category': 'Some Category',
+        'task_duration': '2 Stunden',
+        'notes': 'Some notes',
+    }
 
+    return render_template('task_saved.html', task=task)
 
 @app.route('/mark_task_finished', methods=['POST'])
 def mark_task_finished():
@@ -163,7 +174,8 @@ def mark_task_finished():
     if task_id < len(tasks_list):
         tasks_list[task_id]['finished'] = True
 
-    return index()
+    return task_overview()
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5003)

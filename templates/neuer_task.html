@@ -1,9 +1,10 @@
-{% include "header.jinja2" %} <!-- header einbinden -->
-{% include "navbar.jinja2" %} <!-- navbar einbinden -->
+{% include "header.jinja2" %}
+{% include "navbar.jinja2" %}
 
 <div class="container">
     <h1 class="mt-5 display-4">Neuer Task</h1>
     <p class="card-text text-muted">Trage hier alle nötigen Infos zu deinen Tasks ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
+
     <form action="/save_task" method="POST">
         <div class="form-group">
             <label for="task_name">Task Name:</label>
@@ -23,7 +24,7 @@
         <div class="form-group">
             <label for="priority">Priorität:</label>
             <select class="form-control" name="priority" id="priority">
-                <option value="" selected>Wähle aus welche Priorität dieser Task hat. </option>
+                <option value="" selected>Wähle aus welche Priorität dieser Task hat.</option>
                 <option value="Tief">Tief</option>
                 <option value="Medium">Medium</option>
                 <option value="Hoch">Hoch</option>
@@ -31,16 +32,10 @@
         </div>
 
         <div class="form-group">
-            <label for="task_duration">Dauer des Tasks:</label>
-            <select class="form-control" name="task_duration" id="task_duration">
-                <option value="" selected>Wähle die Dauer des Tasks aus.</option>
-                <option value="10">10 Minuten</option>
-                <option value="30">30 Minuten</option>
-                <option value="120">2 Stunden</option>
-                <option value="180">3 Stunden</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Generate Graph</button>
+    <label for="task_duration">Dauer des Tasks:</label>
+    <input type="number" class="form-control" name="task_duration" id="task_duration" placeholder="Gib die Dauer des Tasks in Minuten oder Stunden ein." required>
+</div>
+
 
         <div class="form-group">
             <label for="category">Kategorie:</label>
@@ -52,17 +47,12 @@
                 <option value="new_category">Neue Kategorie hinzufügen</option>
             </select>
         </div>
+
         {% if category == 'new_category' %}
         <div class="form-group">
             <label for="new_category">Neue Kategorie:</label>
             <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein." required>
         </div>
-        {% endif %}
-
-
-
-        {% if category == 'new_category' %}
-            {% include "neue_kategorie.html" %}
         {% endif %}
 
         <div class="form-group">
@@ -72,20 +62,6 @@
 
         <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
-
-    {% if show_task_saved %}
-        <!-- Task gespeichert -->
-        <h1 class="mt-5">Eintrag gespeichert</h1>
-        <p class="card-text text-muted">Dein Eintrag wurde gespeichert:</p>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ task.name }}</h5>
-                <p class="card-text">Deadline: {{ task.deadline }}</p>
-                <p class="card-text">Priorität: {{ task.priority }}</p>
-                <p class="card-text">Kategorie: {{ task.category }}</p>
-            </div>
-        </div>
-    {% endif %}
 </div>
 
-{% include "footer.jinja2" %} <!-- Footer einbinden -->
+{% include "footer.jinja2" %}
