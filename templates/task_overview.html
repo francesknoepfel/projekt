@@ -1,8 +1,8 @@
-{% include "header.jinja2" %} <!-- header einbinden -->
-{% include "navbar.jinja2" %} <!-- navbar einbinden -->
+{% include "header.jinja2" %} <!-- Header einbinden -->
+{% include "navbar.jinja2" %} <!-- Navbar einbinden -->
 
 <style>
-    /* zeigt an nach was jetzt sortiert wurde */
+    /* Zeigt an, nach welchem Kriterium sortiert wurde */
     th.active {
         background-color: yellow;
     }
@@ -15,45 +15,45 @@
 <div class="container">
     <h3 class="mt-5 display-6">Task Übersicht</h3>
     <!-- Task Übersicht -->
-    <p class="card-text text-muted"> Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
-<form action="/" method="post" class="mb-3">
-    <div class="form-group">
-        <label for="sort">Sortieren nach:</label>
-        <select name="sort" id="sort" class="form-control">
-            <option value="priority" {% if sort_option == 'priority' %}selected{% endif %}>Priorität</option>
-            <option value="deadline" {% if sort_option == 'deadline' %}selected{% endif %}>Deadline</option>
-            <option value="category" {% if sort_option == 'category' %}selected{% endif %}>Kategorie</option>
-        </select>
-    </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>  <!-- Säule für Abhaken -->
-            <th>Name</th>
-            <th>Deadline</th>
-            <th>Priorität</th>
-            <th>Kategorie</th>
-            <th>Notizen</th>
-            <th>Dauer</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for task in tasks %}
-        <tr {% if task.finished %}class="finished-task"{% endif %}>
-            <td>
-                <input type="checkbox" {% if task.finished %}checked{% endif %} name="completed_task" value="{{ task.id }}">
-            </td>
-            <td>{{ task.name }}</td>
-            <td>{{ task.deadline }}</td>
-            <td>{{ task.priority }}</td>
-            <td>{{ task.category }}</td>
-            <td>{{ task.notes }}</td>
-            <td>{{ task.task_duration }}</td>  <!-- Display task duration -->
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <p class="card-text text-muted">Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
+    <form action="/" method="post" class="mb-3">
+        <div class="form-group">
+            <label for="sort">Sortieren nach:</label>
+            <select name="sort" id="sort" class="form-control">
+                <option value="priority" {% if sort_option == 'priority' %}selected{% endif %}>Priorität</option>
+                <option value="deadline" {% if sort_option == 'deadline' %}selected{% endif %}>Deadline</option>
+                <option value="category" {% if sort_option == 'category' %}selected{% endif %}>Kategorie</option>
+            </select>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th> <!-- Säule für Abhaken -->
+                <th>Name</th>
+                <th>Deadline</th>
+                <th>Priorität</th>
+                <th>Kategorie</th>
+                <th>Notizen</th>
+                <th>Dauer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr {% if task.finished %}class="finished-task"{% endif %}>
+                <td>
+                    <input type="checkbox" {% if task.finished %}checked{% endif %} name="completed_task" value="{{ task.id }}">
+                </td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.category }}</td>
+                <td>{{ task.notes }}</td>
+                <td>{{ task.task_duration }}</td> <!-- Anzeige der Task-Dauer -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <h3 class="mt-5 display-6">Kategorien</h3>
     <!-- Tasks nach Kategorie -->
@@ -74,7 +74,7 @@
                             <small class="text-muted">Deadline: {{ task.deadline }}</small>
                         </div>
                         <div class="mt-2">
-                            <small class="text-muted">Notes: {{ task.notes }}</small>
+                            <small class="text-muted">Notizen: {{ task.notes }}</small>
                         </div>
                     </div>
                 </div>
@@ -85,4 +85,4 @@
     </div>
 </div>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %} <!-- Footer einbinden -->

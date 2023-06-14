@@ -1,20 +1,20 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
+{% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <div class="container">
     <h1 class="mt-5 display-4">Neuer Task</h1>
-    <p class="card-text text-muted">Trage hier alle nötigen Infos zu deinen Tasks ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
+    <p class="card-text text-muted">Trage hier alle nötigen Informationen zu deinen Aufgaben ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
 
     <form action="/save_task" method="POST">
         <div class="form-group">
-            <label for="task_name">Task Name:</label>
+            <label for="task_name">Aufgabenname:</label>
             <input type="text" class="form-control" name="task_name" id="task_name" placeholder="Bitte gib deinen Task ein." required>
         </div>
 
         <div class="form-group">
             <label for="deadline">Deadline:</label>
             <div class="input-group date">
-                <input type="text" class="form-control" name="deadline" id="deadline" placeholder="Bis wann sollte der Task fertig sein?">
+                <input type="text" class="form-control" name="deadline" id="deadline" placeholder="Bis wann sollte die Aufgabe fertig sein?">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="priority">Priorität:</label>
             <select class="form-control" name="priority" id="priority">
-                <option value="" selected>Wähle aus welche Priorität dieser Task hat.</option>
+                <option value="" selected>Wähle die Priorität dieser Aufgabe aus.</option>
                 <option value="Tief">Tief</option>
                 <option value="Medium">Medium</option>
                 <option value="Hoch">Hoch</option>
@@ -32,10 +32,9 @@
         </div>
 
         <div class="form-group">
-    <label for="task_duration">Dauer des Tasks:</label>
-    <input type="number" class="form-control" name="task_duration" id="task_duration" placeholder="Gib die Dauer des Tasks in Minuten oder Stunden ein." required>
-</div>
-
+            <label for="task_duration">Dauer der Aufgabe:</label>
+            <input type="number" class="form-control" name="task_duration" id="task_duration" placeholder="Gib die Dauer der Aufgabe in Minuten oder Stunden ein." required>
+        </div>
 
         <div class="form-group">
             <label for="category">Kategorie:</label>
@@ -57,11 +56,11 @@
 
         <div class="form-group">
             <label for="notes">Sonstige Notizen:</label>
-            <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deinem Task vermerken."></textarea>
+            <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deiner Aufgabe vermerken."></textarea>
         </div>
 
         <input type="submit" value="Eintrag speichern" class="btn btn-primary">
     </form>
 </div>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

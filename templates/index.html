@@ -1,8 +1,8 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
+{% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <style>
-    /* zeigt an nach was jetzt sortiert wurde */
+    /* Zeigt an, nach welchem Kriterium aktuell sortiert wird */
     th.active {
         background-color: yellow;
     }
@@ -15,24 +15,24 @@
 <div class="container">
     <h1 class="mt-5 display-4">Willkommen zu Tick Task!</h1>
     <p class="card-text text-muted">
-        Mit Tick Task kannst du alle deine wichtigen Tasks und To-Dos festhalten und abhacken.
+        Mit Tick Task kannst du alle deine wichtigen Aufgaben und To-Dos festhalten und abhaken.
         Du kannst neue Einträge machen und diese Listen und Kategorien zuordnen.
-        Wenn du den Tasks eine Priorität oder ein Datum zuordnest, siehst du auf einen Blick, was als nächstes ansteht.
-        So kannst du über Chaos eine Übersicht haben.
+        Wenn du den Aufgaben eine Priorität oder ein Datum zuordnest, siehst du auf einen Blick, was als nächstes ansteht.
+        So behältst du den Überblick über das Chaos.
     </p>
 
-    <h3 class="mt-5 display-6">Wichtigste Tasks</h3>
-    <p class="card-text text-muted">Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
+    <h3 class="mt-5 display-6">Wichtigste Aufgaben</h3>
+    <p class="card-text text-muted">Sobald du Aufgaben eingibst, werden sie hier angezeigt.</p>
     <table class="table">
         <thead>
             <tr>
-                <th></th>  <!-- säule für abhaken -->
+                <th></th>  <!-- Spalte zum Abhaken -->
                 <th>Name</th>
                 <th>Deadline</th>
                 <th>Priorität</th>
                 <th>Kategorie</th>
-                <th>Notizen</th>  <!--  -->
-                <th>Dauer</th>  <!-- -->
+                <th>Notizen</th>  <!-- Spalte für Notizen -->
+                <th>Dauer</th>  <!-- Spalte für die Aufgabendauer -->
             </tr>
         </thead>
         <tbody>
@@ -41,14 +41,14 @@
                 <tr {% if task.finished %}class="finished-task"{% endif %}>
                     <td>
                         <input type="checkbox" {% if task.finished %}checked{% endif %}
-                               onchange="this.form.submit();">  <!-- abhaken von tasks -->
+                               onchange="this.form.submit();">  <!-- Aufgabe abhaken -->
                     </td>
                     <td>{{ task.name }}</td>
-                    <td>{{ task.deadline }}</td>  <!--  -->
+                    <td>{{ task.deadline }}</td>  <!-- Anzeige der Deadline -->
                     <td>{{ task.priority }}</td>
                     <td>{{ task.category }}</td>
-                    <td>{{ task.notes }}</td>  <!--  -->
-                    <td>{{ task.task_duration }}</td>  <!--  -->
+                    <td>{{ task.notes }}</td>  <!-- Anzeige der Notizen -->
+                    <td>{{ task.task_duration }}</td>  <!-- Anzeige der Aufgabendauer -->
                 </tr>
                 {% endif %}
             {% endfor %}
@@ -56,4 +56,4 @@
     </table>
 </div>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

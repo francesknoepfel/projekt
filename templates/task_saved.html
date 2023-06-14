@@ -1,5 +1,5 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
+{% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <div class="container">
   <h1 class="mt-5">Eintrag gespeichert</h1>
@@ -18,15 +18,10 @@
 <div class="mt-3">
   <div class="btn-group">
     <form action="/neuer_task" method="GET">
-      <input type="submit" value="Add Another New Task" class="btn btn-primary mr-2">
+      <input type="submit" value="Weitere Aufgabe hinzufügen" class="btn btn-primary mr-2">
     </form>
-    <a href="/task_overview" class="btn btn-primary">Zur Task Übersicht</a>
+    <a href="/task_overview" class="btn btn-primary">Zur Aufgabenübersicht</a>
   </div>
 </div>
 
-
-
-
-
-
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->
