@@ -1,62 +1,30 @@
+# Importieren notwendiger Module
 from flask import Flask, render_template, request, redirect
-# from categories import categories
-import plotly.express as px
+from categories import categories
+import plotly.express as pxs
 import plotly.graph_objects as go
 
+
+# flask klasse wird initialisiert
 app = Flask(__name__)
 
+# Laden der Kategorien aus categories,txt und gibt eine liste zurück
 def load_categories():
     with open('categories.txt', 'r') as file:
         categories = [line.strip() for line in file]
     return categories
 
+# Initialisierung der Kategorien
 categories = load_categories()
-
 
 # dictionary zur Speicherung von Aufgaben- und Kategoriedaten
 category_data = {}
 
-@app.route('/mein_projekt')
-def mein_projekt():
-    return render_template('mein_projekt.html')
-
-@app.route('/graph')
-def graph():
-    tasks_list = []
-    for category in category_data.values():
-        tasks_list.extend(category['tasks'])
-
-    completed_tasks = sum(1 for task in tasks_list if task['finished'])
-    incomplete_tasks = sum(1 for task in tasks_list if not task['finished'])
-
-    # Create a bar chart for task status
-    data = [
-        go.Bar(x=['Abgeschlossene Aufgaben', 'Unvollständige Aufgaben'], y=[completed_tasks, incomplete_tasks])
-    ]
-    layout = go.Layout(title='Aufgabenstatus', xaxis={'title': 'Aufgabenstatus'}, yaxis={'title': 'Anzahl der Aufgaben'})
-    fig_status = go.Figure(data=data, layout=layout)
-    status_html = fig_status.to_html(full_html=False)
-
-    # Retrieve task durations from your data
-    task_durations = [task['task_duration'] for category in category_data.values() for task in category['tasks']]
-
-    # Create a histogram
-    fig_histogram = px.histogram(task_durations, nbins=10, title='Task Duration Histogram')
-    histogram_html = fig_histogram.to_html(full_html=False)
-
-    # Combine the HTML for both graphs
-    graph_html = status_html + histogram_html
-
-    return render_template('graph.html', graph_html=graph_html)
-
-def get_list_names():
-    # Ersetze diese Funktion durch deine eigene Implementierung,
-    # um die Namen der Listen aus deiner Datenquelle abzurufen
-    return []
-
+# Die index-Route rendert die Startseite der Anwendung
+# zeigt eine Liste der Aufgaben an, sortiert nach den gewählten Optionen (Priorität, Fälligkeitsdatum oder Kategorie)
 @app.route('/')
 def index():
-    sort_option = request.args.get('sort')
+    sort_option = request.args.get('sort_option')
 
     list_names = get_list_names()
 
@@ -76,6 +44,23 @@ def index():
 
     return render_template('index.html', list_names=list_names, highest_priority_tasks=highest_priority_tasks, other_tasks=other_tasks, category_data=category_data, sort_option=sort_option)
 
+@app.route('/mein_projekt')
+def mein_projekt():
+    return render_template('mein_projekt.html')
+
+# zu den generierten graphen
+@app.route('/graph')
+def graph():
+    category_names = list(category_data.keys())
+    category_counts = [len(category_data[category]['tasks']) for category in category_names]
+
+    return render_template('graph.html', category_names=category_names, category_counts=category_counts)
+
+# gibt eine liste der namen der kategorien
+def get_list_names():
+    return [category.get('category_name', 'Unknown') for category in category_data.values()]
+
+# Anzeige einer Taskübersicht
 @app.route('/task_overview')
 def task_overview():
     tasks_list = []
@@ -84,12 +69,13 @@ def task_overview():
 
     return render_template('task_overview.html', tasks=tasks_list, category_data=category_data)
 
+# route um neuen task zu erstellen
 @app.route('/neuer_task', methods=['GET', 'POST'])
 def neuer_task():
     if request.method == 'POST':
         task_name = request.form['task_name']
         deadline = request.form['deadline']
-        priority = 'Hoch'  # Setze die Priorität auf 'Hoch'
+        priority = 'Hoch'
         category = request.form['category']
         task_duration = request.form['task_duration']
         notes = request.form['notes']
@@ -117,11 +103,13 @@ def neuer_task():
             category_data[category] = {'tasks': [task], 'lists': []}
 
         list_names = get_list_names()
-        return render_template('index.html', list_names=list_names, category_data=category_data)
+        return redirect("/task_saved")
 
     list_names = get_list_names()
     return render_template('neuer_task.html', list_names=list_names, categories=load_categories())
 
+# behandelt das Speichern einer Aufgabe
+# verarbeitet die eingegebenen Daten und fügt die Aufgabe der entsprechenden Kategorie hinzu
 @app.route('/save_task', methods=['POST'])
 def save_task():
     if request.method == 'POST':
@@ -132,6 +120,7 @@ def save_task():
         task_duration = request.form['task_duration']
         notes = request.form['notes']
 
+        # wenn user neue kategorie hinzfügen will
         if category == 'new_category':
             new_category = request.form.get('new_category', '').strip()
             if new_category and new_category not in categories:
@@ -164,10 +153,10 @@ def save_task():
         # Leitet den Benutzer zu task_saved.html weiter
         return redirect("/task_saved")
 
+# zeigt eine Bestätigungsseite an, dass die Aufgabe erfolgreich gespeichert wurde.
 @app.route('/task_saved')
 def task_saved():
-    # Ruft die zuletzt gespeicherte Aufgabe aus category_data
-    # oder der Datenbank ab und übergibt sie an die Vorlage
+    # zuletzt gespeicherte Aufgabe aus der "category_data"-Sammlung oder der Datenbank wird weitergegeben
     task = {
         'name': 'Aufgabenname',
         'deadline': '2023-06-15',
@@ -189,7 +178,7 @@ def mark_task_finished():
     if task_id < len(tasks_list):
         tasks_list[task_id]['finished'] = True
 
-    return task_overview()
+    return redirect("/task_overview")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5003)

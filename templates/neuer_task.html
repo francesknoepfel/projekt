@@ -1,13 +1,14 @@
 {% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
 {% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
-<div class="container">
+
+    <div class="container">
     <h1 class="mt-5 display-4">Neuer Task</h1>
     <p class="card-text text-muted">Trage hier alle nötigen Informationen zu deinen Aufgaben ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
 
     <form action="/save_task" method="POST">
         <div class="form-group">
-            <label for="task_name">Aufgabenname:</label>
+            <label for="task_name">Taskname:</label>
             <input type="text" class="form-control" name="task_name" id="task_name" placeholder="Bitte gib deinen Task ein." required>
         </div>
 
@@ -47,10 +48,10 @@
            </select>
        </div>
 
-        <div class="form-group" id="new-category-input" style="display: none;">
-            <label for="new_category">Neue Kategorie:</label>
-            <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein.">
-        </div>
+            <div class="form-group" id="new-category-input" style="display: none;">
+                <label for="new_category">Neue Kategorie:</label>
+                <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein.">
+            </div>
 
         <!-- Meine letzte Hoffnung war Javascirpt hinzufügen -->
         <script>
@@ -66,14 +67,15 @@
 </script>
 
 
-<div class="form-group">
-    <label for="notes">Sonstige Notizen:</label>
-    <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deiner Aufgabe vermerken."></textarea>
-</div>
+    <div class="form-group">
+        <label for="notes">Sonstige Notizen:</label>
+        <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deiner Aufgabe vermerken."></textarea>
+    </div>
 
 
-        <input type="submit" value="Eintrag speichern" class="btn btn-primary">
-    </form>
+    <input type="submit" value="Eintrag speichern" class="btn btn-primary">
+</form>
 </div>
+
 
 {% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

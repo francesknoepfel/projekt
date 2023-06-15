@@ -1,63 +1,89 @@
-{% include "header.jinja2" %} <!-- header einbinden -->
-{% include "navbar.jinja2" %} <!-- navbar einbinden -->
+{% include "header.jinja2" %}
+{% include "navbar.jinja2" %}
 
 <div class="container">
-  <h1 class="mt-5 display-4">Über mein Projekt </h1>
-    <p class="card-text text-muted"> Tick Task ist eine webbasierte To-Do-Listen-Anwendung, mit der Benutzer ihre Aufgaben verwalten und organisiert bleiben können.
-        Die App bietet eine intuitive und benutzerfreundliche Benutzeroberfläche zum Erstellen, Aktualisieren und Priorisieren von Aufgaben in verschiedenen Listen.</p>
+  <h1 class="mt-5 display-4">Über mein Projekt</h1>
+  <p class="card-text text-muted">Tick Task ist eine webbasierte To-Do-Listen-Anwendung, mit der Benutzer ihre Aufgaben verwalten und organisiert bleiben können.
+    Die App bietet eine intuitive und benutzerfreundliche Benutzeroberfläche zum Erstellen, Aktualisieren und Priorisieren von Aufgaben in verschiedenen Listen.
+  </p>
 
-    <h2 class="h5">Meine Motivation</h2>
-    <p class="card-text text-muted">Seit  ich in meiner Schulkarriere auf mich alleine gestellt bin und selber meine Aufgaben und Deadlines im Griff haben muss, benutze ich To-Do Listen. Mithilfe von Listen kann man strukturiert und organisiert arbeiten, egal ob im Rahmen des Studiums, Haushalts oder sonstigen Verpflichtungen. Zudem bestätigt das Abhaken der Aufgabe bei Vollenden ein Gefühl von Leistungserbringung. Wichtige Funktionsmöglichkeiten für mich sind die Kategorisierung von Aufgaben, sowie Deadline-Setzung und Erinnerungen jener Tasks.
-        Als Projekt im Programmieren 2 programmiere ich eine To-Do Liste Webapplikation mit dem Ziel alle möglichen Tasks unter einen Hut zu bringen. Die App sollte es ermöglichen aus vorgegebenen, sowie selber erstellten Kategorien auszusuchen, um eine neue To-Do Liste zu erstellen. Die Tasks sollten schnell erstellt werden können und der entsprechenden Liste zugeordnet werden, sowie schnell und einfach eine Zeit und/oder Datum eingestellt werden. Nutzende der App sollten beim Öffnen eine einfache Übersicht der bevorstehenden Tasks sehen, sowie die dringlichsten Aufgaben hervorgehoben bekommen.
-</p>
-    <h2 class="h5">Über die Features </h2>
+  <h2 class="h5">Meine Motivation</h2>
+  <p class="card-text text-muted">Seit ich in meiner Schulkarriere auf mich alleine gestellt bin und selber meine Aufgaben und Deadlines im Griff haben muss, benutze ich To-Do Listen.
+    Mithilfe von Listen kann man strukturiert und organisiert arbeiten, egal ob im Rahmen des Studiums, Haushalts oder sonstigen Verpflichtungen.
+    Zudem bestätigt das Abhaken der Aufgabe bei Vollenden ein Gefühl von Leistungserbringung. Wichtige Funktionsmöglichkeiten für mich sind die Kategorisierung von Aufgaben, sowie Deadline-Setzung und Erinnerungen jener Tasks.
+    Als Projekt im Programmieren 2 programmiere ich eine To-Do Liste Webapplikation mit dem Ziel alle möglichen Tasks unter einen Hut zu bringen.
+    Die App sollte es ermöglichen aus vorgegebenen, sowie selber erstellten Kategorien auszusuchen, um eine neue To-Do Liste zu erstellen.
+    Die Tasks sollten schnell erstellt werden können und der entsprechenden Liste zugeordnet werden, sowie schnell und einfach eine Zeit und/oder Datum eingestellt werden.
+    Nutzende der App sollten beim Öffnen eine einfache Übersicht der bevorstehenden Tasks sehen, sowie die dringlichsten Aufgaben hervorgehoben bekommen.
+  </p>
+
+  <h2 class="h5">Über die Features</h2>
+  <p class="card-text text-muted">
+    <br>Erstellen und Speichern von Aufgaben: Benutzer können neue Aufgaben erstellen und die Details wie Aufgabenname, Deadline, Priorität, Kategorie und Notizen angeben. Diese Aufgaben werden dann in einer Datenbank gespeichert.
+    <br>Aufgabenübersicht: Eine Funktion, um eine Liste aller gespeicherten Aufgaben anzuzeigen. Die Aufgaben können nach verschiedenen Kriterien wie Priorität, Fälligkeitsdatum oder Kategorie sortiert werden.
+    <br>Kategorienverwaltung: Eine Funktion, um Kategorien für Aufgaben zu erstellen, zu bearbeiten und zu löschen. Benutzer können Aufgaben verschiedenen Kategorien zuordnen, um sie besser zu organisieren.
+    <br>Filterung und Sortierung von Aufgaben: Benutzer können die Aufgabenliste nach verschiedenen Kriterien filtern, z. B. nach Priorität, Fälligkeitsdatum oder Kategorie. Sie können auch die Sortierreihenfolge festlegen, um die Aufgaben in aufsteigender oder absteigender Reihenfolge anzuzeigen.
+  </p>
+    <h2 class="h5">Verwendete Technologien & Anleitung </h2>
     <p class="card-text text-muted">
-    Aufgabenverwaltung: Benutzer*innen können neue Aufgaben erstellen, indem sie einen Namen, ein Fälligkeitsdatum, eine Prioritätsstufe angeben und sie einer bestimmten Liste zuordnen.
-    <br>Aufgabenpriorisierung: Aufgaben können als "Hoch", "Mittel" oder "Niedrig" priorisiert werden, um Benutzer*innen bei der Konzentration auf dringende und wichtige Aufgaben zu helfen.
-    <br>Kategorie: Benutzer*innen können ihre Tasks Kategorien zuordnen.
-    <br> Fälligkeit verfolgen: Die App unterstützt das Verfolgen von Fälligkeitsdaten, sodass Benutzer einen klaren Überblick über anstehende Fristen haben. --> DATUM & ZEIT AUSWAHL
-    <br>Aufgaben sortieren: Benutzer*innen können Aufgaben nach Priorität sortieren, um hochpriorisierte Aufgaben leichter zu identifizieren und sich darauf zu konzentrieren.
-    <br>Design:
+        Diese folgenden Pakete sind erforderlich und müssen zu Beginn installiert werden:
+        <br> Flask: Flask ist ein Web-Framework für Python.
+        <br> render_template: Eine Funktion von Flask, mit der HTML-Templates gerendert werden können
+        <br> request: Ein Objekt von Flask, das Informationen über die eingehende Anfrage enthält.
+        <br> redirect: Eine Funktion von Flask, um den Benutzer auf eine andere Seite umzuleiten.
+        <br> categories: Eine Modul- oder Dateiabhängigkeit, die die Kategorien für die Anwendung bereitstellt.
+        <br> plotly.express und plotly.graph_objects: Pakete zum Erstellen von interaktiven Diagrammen und
+        Visualisierungen.
+        <br>Initialisierung der Flask Anwendung: Die Flask-Klasse wird initialisiert, indem der Name des Moduls __name__
+        als Argument übergeben wird.
+        <br>Laden der Kategorien: Die Funktion load_categories() lädt die Kategorien aus einer Datei (z.B.
+        categories.txt) und speichert sie in einer Variablen (categories).
+        <br>Definition der Routen und Funktionen: Die Funktionen werden mit der @app.route als Routen definiert, jede
+        Route wird durch eine Funktion repräsentiert, die eine HTML-Seite (Template) rendert oder eine bestimmte Aktion
+        durchführt, z.B. das Hinzufügen einer Aufgabe oder das Markieren einer Aufgabe als erledigt.
+        <br>Startseite (index-Route): Die index-Route rendert die Startseite der Anwendung. Abhängig vom sort-Parameter
+        werden die Aufgaben sortiert und in den entsprechenden Jinja2-Templates angezeigt.
+        <br>Andere Routen und Funktionen: Es gibt weitere Routen und Funktionen für spezifische Seiten und Aktionen wie
+        die Anzeige eines Graphen (graph-Route), die Anzeige einer Aufgabenübersicht (task_overview-Route), das
+        Hinzufügen einer neuen Aufgabe (neuer_task-Route), das Speichern einer Aufgabe (save_task-Route), die Anzeige
+        einer Bestätigungsseite für gespeicherte Aufgaben (task_saved-Route) und das Markieren einer Aufgabe als
+        erledigt (mark_task_finished-Route).
+        <br>Start App:
+        if __name__ == '__main__': Eine Bedingung, die sicherstellt, dass die App nur gestartet wird, wenn sie direkt
+        ausgeführt wird (nicht, wenn sie importiert wird).
+        <br>app.run(debug=True, port=5003): Startet die Flask-App auf dem angegebenen Port
+        mit Debugging aktiviert..
     </p>
-
-
-    <h2 class="h5">Verwendete Technologien </h2>
-    <p class="card-text text-muted">
-        Flask: Das Backend der Anwendung wird mit dem Flask-Webframework erstellt, das eine solide Grundlage für die Verarbeitung von HTTP-Anfragen und die Verwaltung von Daten bietet.
-        <br> HTML/CSS: Die Benutzeroberfläche wird mit HTML zur Strukturierung des Inhalts und CSS zur Gestaltung und Layouterstellung entworfen.
-        <br> Bootstrap: DDas Bootstrap-Framework wird für reaktionsfähige und für Mobilgeräte geeignete Designkomponenten verwendet, um eine konsistente und visuell ansprechende Benutzererfahrung sicherzustellen.
-        <br> (Javascript: Einige interaktive Funktionen und clientseitige Funktionalitäten können mit JavaScript implementiert werden.)
-    </p>
-
     <h2 class="h5"> Vorhandene Funktionen </h2>
+    In App.py:
+    <br>
     <p class="card-text text-muted">
-        xy
+        - `load_categories()`: Diese Funktion liest die Kategorien aus der Datei 'categories.txt' und gibt eine Liste der Kategorien zurück.
+        <br> -`mein_projekt()`: Diese Funktion ist für die Route '/mein_projekt' zuständig und rendert das Template 'mein_projekt.html'.
+        <br>  -`graph()`: Diese Funktion ist für die Route '/graph' zuständig und rendert das Template 'graph.html'. Sie erstellt ein Diagramm, das die Anzahl der Aufgaben pro Kategorie anzeigt.
+        <br> - `get_list_names()`: Diese Funktion gibt eine Liste der Namen der Kategorien zurück.
+        <br>  -`index()`: Diese Funktion ist für die Route '/' (Startseite) zuständig und rendert das Template 'index.html'. Sie zeigt eine Liste der Aufgaben an, sortiert nach den gewählten Optionen (Priorität, Fälligkeitsdatum oder Kategorie).
+        <br>  -`task_overview()`: Diese Funktion ist für die Route '/task_overview' zuständig und rendert das Template 'task_overview.html'. Sie zeigt eine Übersicht aller Aufgaben an.
+        <br> - `neuer_task()`: Diese Funktion ist für die Route '/neuer_task' zuständig und behandelt das Hinzufügen einer neuen Aufgabe. Wenn die Methode der Anfrage 'POST' ist, werden die eingegebenen Daten verarbeitet und die Aufgabe wird der entsprechenden Kategorie hinzugefügt. Andernfalls wird das Template 'neuer_task.html' gerendert und die verfügbaren Kategorien werden geladen.
+        <br> - `save_task()`: Diese Funktion ist für die Route '/save_task' zuständig und behandelt das Speichern einer Aufgabe. Sie verarbeitet die eingegebenen Daten und fügt die Aufgabe der entsprechenden Kategorie hinzu.
+        <br> - `task_saved()`: Diese Funktion ist für die Route '/task_saved' zuständig und rendert das Template 'task_saved.html'. Sie zeigt eine Bestätigungsseite an, dass die Aufgabe erfolgreich gespeichert wurde.
+        <br> -`mark_task_finished()`: Diese Funktion ist für die Route '/mark_task_finished' zuständig und behandelt das Markieren einer Aufgabe als erledigt. Sie aktualisiert den Status der Aufgabe und leitet den Benutzer zur Aufgabenübersicht weiter.
     </p>
-    <h3> In App.py </h3>
+    In neuer_task.html: <br>
+     <p class="card-text text-muted">
+         handleCategoryChange(selectElement): Diese JavaScript-Funktion wird aufgerufen, wenn sich die Auswahl der Kategorie ändert. Sie überprüft, ob die ausgewählte Kategorie "new_category" ist, und zeigt das Eingabefeld für eine neue Kategorie an, wenn dies der Fall ist.
+    </p>
+    In datenbank.py: <br>
     <p class="card-text text-muted">
-        xy
-    </p>
-    <h3> In Daten.py </h3>
-     <p class="card-text text-muted">
-        xy
-    </p>
-    <h3> In Index.html </h3>
-     <p class="card-text text-muted">
-        xy
-    </p>
+    Diese Funktionen dienen zum Lesen und Schreiben von JSON-Daten in eine Datei. Die Funktion `read()` ermöglicht es, bestehende Daten aus einer JSON-Datei abzurufen, und die Funktion `write_json()` ermöglicht es, neue Daten zur JSON-Datei hinzuzufügen oder eine neue Datei zu erstellen, falls sie nicht existiert.
+         - `read(file_name)`: Diese Funktion liest den Inhalt einer JSON-Datei und gibt ihn als Liste zurück. Wenn die Datei nicht existiert oder leer ist, wird eine leere Liste zurückgegeben. Die Funktion nimmt den Parameter `file_name` entgegen, der den Pfad zur JSON-Datei angibt. Sie verwendet die Funktion `json.load()`, um den JSON-Inhalt aus der Datei zu laden.
+         <br>
+         - `write_json(file_name, inhalt)`: Diese Funktion schreibt den angegebenen Inhalt in eine JSON-Datei. Wenn die Datei bereits existiert, wird der Inhalt als neues Listenelement hinzugefügt. Wenn die Datei nicht existiert, wird eine neue Datei erstellt und der Inhalt als erstes Listenelement gespeichert. Die Funktion hat zwei Parameter: `file_name`, der den Pfad zur JSON-Datei angibt, und `inhalt`, der der zu schreibende Inhalt ist. Zunächst wird der bestehende JSON-Inhalt aus der Datei mit der Funktion `read()` gelesen, der neue Inhalt wird angehängt und dann wird der aktualisierte Inhalt mit `json.dumps()` in eine JSON-Zeichenkette umgewandelt und in die Datei geschrieben.
+     </p>
+    <h2 class="h5">Projektreflexion</h2>
+    <p class="card-text text-muted">
+       Als Einstiegsprogrammiererin, die ausserhalb meines Studiums nur wenig Interesse an der Programmierwelt hatte, fiel es mir anfangs schwer, mich in das Projekt zu stürzen. Allerdings musste ich mich zusammenreißen, da mir nun eine zweite Chance gegeben wurde, mich in diesem Kurs zu verbessern und eine ausreichende Note zu erzielen. Anstatt mich auf Desinteresse am Modul einzustellen, versuchte ich meine Perspektive zu ändern, um tatsächlich Fortschritte zu machen. Also begann ich damit. Schnell wurde mir klar, dass mir viele grundlegende Elemente des Programmierens fehlen, wodurch mein Fortschritt äußerst langsam war. Daraufhin entschied ich, dass es am sinnvollsten wäre, den Unterricht als Aufzeichnung anzusehen, damit ich jederzeit pausieren und besser folgen konnte.
+            Ich entschied mich für meine Projektidee aus zwei Gründen: Zum einen, weil ich persönlich davon profitieren würde, und zum anderen, weil ich bei meinem ersten Durchgang im Modul Pro2 eine eher komplizierte Projektidee gewählt hatte. Dieses Mal wollte ich mit einer einfachen, aber gut umgesetzten Idee zufrieden sein. ......xy </p>
 
-<h2 class="h5">Design </h2>
-        <br> Wireframes
-    <br>Ablaufdiagramm
-
-
-       <h2 class="h5"> Setup & Verwendung </h2>
-      <h2 class="h5"> Ordnerstruktur </h2>
-        <h2 class="h5"> Anleitung</h2>
-        <h2 class="h5"> Projektreflexion</h2>
-        <p class="card-text text-muted">
-        Als angehende Programmiererin, die ausserhalb meines Studiums nur wenig Interesse an der Programmierwelt hatte, fiel es mir anfangs schwer, mich in das Projekt zu stürzen. Allerdings musste ich mich zusammenreißen, da mir nun eine zweite Chance gegeben wurde, mich in diesem Kurs zu verbessern und eine ausreichende Note zu erzielen. Anstatt mich auf Desinteresse am Modul einzustellen, versuchte ich meine Perspektive zu ändern, um tatsächlich Fortschritte zu machen. Also begann ich damit. Schnell wurde mir klar, dass mir viele grundlegende Elemente des Programmierens fehlen, wodurch mein Fortschritt äußerst langsam war. Daraufhin entschied ich, dass es am sinnvollsten wäre, den Unterricht als Aufzeichnung anzusehen, damit ich jederzeit pausieren und besser folgen konnte.
-        Ich entschied mich für meine Projektidee aus zwei Gründen: Zum einen, weil ich persönlich davon profitieren würde, und zum anderen, weil ich bei meinem ersten Durchgang im Modul Pro2 eine eher komplizierte Projektidee gewählt hatte. Dieses Mal wollte ich mit einer einfachen, aber gut umgesetzten Idee zufrieden sein.
-            ......xy </p>
 
 {% include "footer.jinja2" %} <!-- Footer einbinden -->
