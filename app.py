@@ -21,16 +21,23 @@ def graph():
     completed_tasks = sum(1 for task in tasks_list if task['finished'])
     incomplete_tasks = sum(1 for task in tasks_list if not task['finished'])
 
-    # Erstellt ein Balkendiagramm
+    # Create a bar chart for task status
     data = [
         go.Bar(x=['Abgeschlossene Aufgaben', 'Unvollständige Aufgaben'], y=[completed_tasks, incomplete_tasks])
     ]
-
     layout = go.Layout(title='Aufgabenstatus', xaxis={'title': 'Aufgabenstatus'}, yaxis={'title': 'Anzahl der Aufgaben'})
+    fig_status = go.Figure(data=data, layout=layout)
+    status_html = fig_status.to_html(full_html=False)
 
-    fig = go.Figure(data=data, layout=layout)
+    # Retrieve task durations from your data
+    task_durations = [task['task_duration'] for category in category_data.values() for task in category['tasks']]
 
-    graph_html = fig.to_html(full_html=False)
+    # Create a histogram
+    fig_histogram = px.histogram(task_durations, nbins=10, title='Task Duration Histogram')
+    histogram_html = fig_histogram.to_html(full_html=False)
+
+    # Combine the HTML for both graphs
+    graph_html = status_html + histogram_html
 
     return render_template('graph.html', graph_html=graph_html)
 
