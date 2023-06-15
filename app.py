@@ -1,9 +1,17 @@
 from flask import Flask, render_template, request, redirect
-from categories import categories
+# from categories import categories
 import plotly.express as px
 import plotly.graph_objects as go
 
 app = Flask(__name__)
+
+def load_categories():
+    with open('categories.txt', 'r') as file:
+        categories = [line.strip() for line in file]
+    return categories
+
+categories = load_categories()
+
 
 # dictionary zur Speicherung von Aufgaben- und Kategoriedaten
 category_data = {}
@@ -88,9 +96,10 @@ def neuer_task():
 
         if category == 'new_category':
             new_category = request.form.get('new_category', '').strip()
-            if new_category and new_category not in categories:
-                categories.append(new_category)
+            if new_category:
                 category = new_category
+                if category not in categories:
+                    categories.append(category)
 
         task = {
             'name': task_name,
@@ -111,7 +120,7 @@ def neuer_task():
         return render_template('index.html', list_names=list_names, category_data=category_data)
 
     list_names = get_list_names()
-    return render_template('neuer_task.html', list_names=list_names, categories=categories)
+    return render_template('neuer_task.html', list_names=list_names, categories=load_categories())
 
 @app.route('/save_task', methods=['POST'])
 def save_task():
