@@ -24,25 +24,7 @@ category_data = {}
 # zeigt eine Liste der Aufgaben an, sortiert nach den gewählten Optionen (Priorität, Fälligkeitsdatum oder Kategorie)
 @app.route('/')
 def index():
-    sort_option = request.args.get('sort_option')
-
-    list_names = get_list_names()
-
-    tasks_list = []
-    for category in category_data.values():
-        tasks_list.extend(category['tasks'])
-
-    if sort_option == 'priority':
-        tasks_list.sort(key=lambda x: x['priority'])
-    elif sort_option == 'deadline':
-        tasks_list.sort(key=lambda x: x['deadline'])
-    elif sort_option == 'category':
-        tasks_list.sort(key=lambda x: x['category'])
-
-    highest_priority_tasks = [task for task in tasks_list if task['priority'] == 'Hoch']
-    other_tasks = [task for task in tasks_list if task['priority'] != 'Hoch']
-
-    return render_template('index.html', list_names=list_names, highest_priority_tasks=highest_priority_tasks, other_tasks=other_tasks, category_data=category_data, sort_option=sort_option)
+    return render_template('index.html')
 
 @app.route('/mein_projekt')
 def mein_projekt():
@@ -51,10 +33,19 @@ def mein_projekt():
 # zu den generierten graphen
 @app.route('/graph')
 def graph():
+    # enthält eine Liste der Kategorienamen
+    # Kategorienamen werden aus dem category_data-Dictionary genommen
     category_names = list(category_data.keys())
-    category_counts = [len(category_data[category]['tasks']) for category in category_names]
+    #  enthält eine Liste der Aufgabenzahlen pro Kategorie, für jede Kategorie wird  Anz. der Tasks abgerufen
+    category_counts = [len(category_data.get(category, {}).get('tasks', [])) for category in category_names]
 
-    return render_template('graph.html', category_names=category_names, category_counts=category_counts)
+    # enthält eine Instanz von Plotly, die ein Kreisdiagramm darstellt
+    # Daten für das Kreisdiagramm werden mit category_names als labels erstellt
+    fig = go.Figure(data=[go.Pie(labels=category_names, values=category_counts)])
+    # enthätl den den HTML code für das Kriesdiagramm
+    graph_html = fig.to_html(full_html=False)
+
+    return render_template('graph.html', plot_html=graph_html)
 
 # gibt eine liste der namen der kategorien
 def get_list_names():
@@ -63,11 +54,27 @@ def get_list_names():
 # Anzeige einer Taskübersicht
 @app.route('/task_overview')
 def task_overview():
+    # sortier option für user
+    sort_option = request.args.get('sort_option')
+
+    # wird als leere liste initilaisiert, dient dazu alle Aufgaben aus allen Kategorien zu sammeln
     tasks_list = []
+    # Schleife die alle werte im category_data dictionary durchläuft
     for category in category_data.values():
         tasks_list.extend(category['tasks'])
 
-    return render_template('task_overview.html', tasks=tasks_list, category_data=category_data)
+    # tasks werden sortiert
+    if sort_option == 'priority':
+        tasks_list.sort(key=lambda x: x['priority'])
+    elif sort_option == 'deadline':
+        tasks_list.sort(key=lambda x: x['deadline'])
+    elif sort_option == 'category':
+        tasks_list.sort(key=lambda x: x['category'])
+    else:
+        # Standardsortieroption, wenn sort_option nicht bereitgestellt oder ungültig ist
+        tasks_list.sort(key=lambda x: x['priority'])
+
+    return render_template('task_overview.html', tasks=tasks_list, category_data=category_data, sort_option=sort_option)
 
 # route um neuen task zu erstellen
 @app.route('/neuer_task', methods=['GET', 'POST'])
@@ -112,6 +119,7 @@ def neuer_task():
 # verarbeitet die eingegebenen Daten und fügt die Aufgabe der entsprechenden Kategorie hinzu
 @app.route('/save_task', methods=['POST'])
 def save_task():
+    # in neuer_task POST anfrage, weshalb formulardaten aus der Anfrage abgerufen werden
     if request.method == 'POST':
         task_name = request.form['task_name']
         deadline = request.form['deadline']
@@ -145,6 +153,7 @@ def save_task():
             'finished': False
         }
 
+        # erstellte Task wird zur category_data hinzugefügt.
         if category in category_data:
             category_data[category]['tasks'].append(task)
         else:

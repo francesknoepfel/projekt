@@ -2,15 +2,15 @@
 {% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <div class="container">
-  <h1 class="mt-5 text-center">Eintrag gespeichert</h1>
-  <p class="card-text text-muted text-center">Dein Eintrag wurde gespeichert:</p>
+    <h1 class="mt-5 text-center">Eintrag gespeichert</h1>
+    <p class="card-text text-muted text-center">Dein Eintrag wurde gespeichert:</p>
 
-  <div class="mt-3 d-flex flex-column align-items-center">
-    <form action="/neuer_task" method="GET">
-      <input type="submit" value="Weitere Aufgabe hinzufügen" class="btn btn-primary mb-2">
-    </form>
-    <a href="/task_overview" class="btn btn-primary">Zur Aufgabenübersicht</a>
-  </div>
+    <div class="mt-3 d-flex flex-column align-items-center">
+        <form action="/neuer_task" method="GET">
+            <input type="submit" value="Weiterer Task hinzufügen" class="btn btn-primary mb-2">
+        </form>
+        <a href="/task_overview" class="btn btn-primary">Zur Task Übersicht</a>
+    </div>
 </div>
 
 {% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

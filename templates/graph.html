@@ -1,36 +1,13 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
+{% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <div class="container">
-    <h1 class="mt-5 display-4">Kategorien-Übersicht</h1>
-    <div id="categoryChart"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mt-5 display-4">Kreisdiagramm nach Kategorie</h1>
+            <div id="chart-container">{{ plot_html|safe }}</div>
+        </div>
+    </div>
 </div>
 
-{% include "footer.jinja2" %}
-
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-    var categoryNames = {{ category_names|tojson }};
-    var categoryCounts = {{ category_counts|tojson }};
-
-    var data = [{
-        labels: categoryNames,
-        values: categoryCounts,
-        type: 'pie',
-        text: categoryNames, // Add the task names as text for each pie slice
-        hoverinfo: 'label+text', // Show label and text on hover
-        textinfo: 'percent', // Display percentage on the pie slices
-        textposition: 'inside', // Position the text inside the pie slices
-    }];
-
-    var layout = {
-        title: 'Kategorie Übersicht',
-        showlegend: true, // Show the legend
-        legend: {
-            x: 1, // Position the legend on the right side
-            y: 0.5 // Center the legend vertically
-        }
-    };
-
-    Plotly.newPlot('categoryChart', data, layout, {displayModeBar: false});
-</script>
+{% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

@@ -1,8 +1,7 @@
 {% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
 {% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
-
-    <div class="container">
+<div class="container">
     <h1 class="mt-5 display-4">Neuer Task</h1>
     <p class="card-text text-muted">Trage hier alle nötigen Informationen zu deinen Aufgaben ein. Je mehr Details du angeben kannst, desto besser wird dein Überblick sein.</p>
 
@@ -37,45 +36,43 @@
             <input type="number" class="form-control" name="task_duration" id="task_duration" placeholder="Gib die Dauer der Aufgabe in Minuten ein." required>
         </div>
 
-       <div class="form-group">
-           <label for="category">Kategorie:</label>
-           <select class="form-control" name="category" id="category" onchange="handleCategoryChange(this);">
-               <option value="" selected>Wähle eine Kategorie aus.</option>
-               {% for category in categories %}
-               <option value="{{ category }}">{{ category }}</option>
-               {% endfor %}
-               <option value="new_category">Neue Kategorie hinzufügen</option>
-           </select>
-       </div>
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select class="form-control" name="category" id="category" onchange="handleCategoryChange(this);">
+                <option value="" selected>Wähle eine Kategorie aus.</option>
+                {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+                <option value="new_category">Neue Kategorie hinzufügen</option>
+            </select>
+        </div>
 
-            <div class="form-group" id="new-category-input" style="display: none;">
-                <label for="new_category">Neue Kategorie:</label>
-                <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein.">
-            </div>
+        <div class="form-group" id="new-category-input" style="display: none;">
+            <label for="new_category">Neue Kategorie:</label>
+            <input type="text" class="form-control" name="new_category" id="new_category" placeholder="Gib den Namen der neuen Kategorie ein.">
+        </div>
 
         <!-- Meine letzte Hoffnung war Javascirpt hinzufügen -->
         <script>
-    function handleCategoryChange(selectElement) {
-        var newCategoryInput = document.getElementById('new-category-input');
+            // Funktion zum Umgang mit der Änderung der Kategorieauswahl
+            function handleCategoryChange(selectElement) {
+                var newCategoryInput = document.getElementById('new-category-input');
 
-        if (selectElement.value === 'new_category') {
-            newCategoryInput.style.display = 'block';
-        } else {
-            newCategoryInput.style.display = 'none';
-        }
-    }
-</script>
+                if (selectElement.value === 'new_category') {
+                    newCategoryInput.style.display = 'block';
+                } else {
+                    newCategoryInput.style.display = 'none';
+                }
+            }
+        </script>
 
+        <div class="form-group">
+            <label for="notes">Sonstige Notizen:</label>
+            <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deiner Aufgabe vermerken."></textarea>
+        </div>
 
-    <div class="form-group">
-        <label for="notes">Sonstige Notizen:</label>
-        <textarea class="form-control" name="notes" id="notes" rows="5" placeholder="Hier kannst du Notizen zu deiner Aufgabe vermerken."></textarea>
-    </div>
-
-
-    <input type="submit" value="Eintrag speichern" class="btn btn-primary">
-</form>
+        <input type="submit" value="Eintrag speichern" class="btn btn-primary">
+    </form>
 </div>
-
 
 {% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

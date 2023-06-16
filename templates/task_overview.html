@@ -1,20 +1,24 @@
-{% include "header.jinja2" %}
-{% include "navbar.jinja2" %}
+{% include "header.jinja2" %}  <!-- Fügt die "header.jinja2"-Vorlage ein -->
+{% include "navbar.jinja2" %}  <!-- Fügt die "navbar.jinja2"-Vorlage ein -->
 
 <div class="container">
     <h1 class="mt-5 display-4">Task Übersicht</h1>
-    <p class="card-text text-muted">Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
-    <form method="GET" action="{{ url_for('index') }}">
+    <a href="/graph" class="btn btn-primary">Graph generieren</a>
+    <a href="/neuer_task" class="btn btn-primary">Task erstellen</a>
+    <form method="GET" action="{{ url_for('task_overview') }}">
         <label for="sort_option">Sortieren nach:</label>
-        <select name="sort_option" id="sort_option">
+        <select name="sort_option" id="sort_option" class="form-select">
             <option value="priority">Priorität</option>
             <option value="deadline">Deadline</option>
             <option value="category">Kategorie</option>
         </select>
-        <button type="submit">Filter anwenden</button>
+        <button type="submit" class="btn btn-primary">Filter anwenden</button>
     </form>
 
+
+    <!--  -->
     <form action="/mark_task_finished" method="POST">
+        <p class="card-text text-muted">Sobald du Tasks einträgst, werden sie hier angezeigt.</p>
         <table class="table">
             <thead>
                 <tr>
@@ -28,9 +32,12 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- for schleife iteriert über jede Aufgaeb in der task liste -->
                 {% for task in tasks %}
+                <!--  Bedingung wird überpräft ob die Aufgabe finished ist-->
                 <tr {% if task.finished %}class="finished-task"{% endif %}>
                     <td>
+                        <!-- Input element mit checkbox, damit user abhaken kann wenn der task fertig ist  -->
                         <input type="checkbox" {% if task.finished %}checked{% endif %} name="completed_task" value="{{ task.id }}">
                     </td>
                     <td>{{ task.name }}</td>
@@ -43,8 +50,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="/graph" class="btn btn-primary">Graph generieren</a>
-        <a href="/neuer_task" class="btn btn-primary">Task erstellen</a>
     </form>
 
     <h3 class="mt-5 display-6">Kategorien</h3>
@@ -78,4 +83,4 @@
     </div>
 </div>
 
-{% include "footer.jinja2" %}
+{% include "footer.jinja2" %}  <!-- Fügt die "footer.jinja2"-Vorlage ein -->

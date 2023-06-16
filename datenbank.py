@@ -3,7 +3,8 @@ import json
 
 def read(file_name):
     """
-    Reads the contents of a JSON file and returns it as a list or an empty list if the file doesn't exist or is empty.
+    sLiest den Inhalt einer JSON-Datei und gibt ihn als Liste zurück oder eine leere Liste, wenn die Datei nicht existiert
+    oder leer ist.
     """
     try:
         with open(file_name, 'r') as f:
@@ -15,8 +16,8 @@ def read(file_name):
 
 def write_json(file_name, inhalt):
     """
-    Writes the given content to a JSON file. If the file already exists, the content is appended to it as a list item.
-    If the file doesn't exist, a new file is created with the content as a list item.
+    Schreibt den übergebenen Inhalt in eine JSON-Datei. Wenn die Datei bereits existiert, wird der Inhalt als Listenelement
+    angehängt. Wenn die Datei nicht existiert, wird eine neue Datei mit dem Inhalt als Listenelement erstellt.
     """
     json_inhalt = read(file_name)
     json_inhalt.append(inhalt)
