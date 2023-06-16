@@ -57,7 +57,8 @@ In app.py:
 
 In neuer_task.html:
 -	handleCategoryChange(selectElement): Diese JavaScript-Funktion wird aufgerufen, wenn sich die Auswahl der Kategorie ändert. Sie überprüft, ob die ausgewählte Kategorie "new_category" ist, und zeigt das Eingabefeld für eine neue Kategorie an, wenn dies der Fall ist.
-
+-	 Ich versuchte eigentlich, JavaScript nicht einzubauen,, da es nicht zum Modul gehörte. Jedoch sah ich schlussendlich keine andere Lösung und durch Recherchieren und Herumprobieren stellte ich fest, dass es letztendlich mit JS machbar war. Da ich das Modul Webprogrammieren bereits absolviert hatte, verfügte ich über ausreichende Grundkenntnisse, und mit dem Lesen der Unterrichtsmaterialien war es letztendlich ein Erfolg.
+-	
 In datenbank.py:
 -	`read(file_name)`: Diese Funktion liest den Inhalt einer JSON-Datei und gibt ihn als Liste zurück. Wenn die Datei nicht existiert oder leer ist, wird eine leere Liste zurückgegeben. Die Funktion nimmt den Parameter `file_name` entgegen, der den Pfad zur JSON-Datei angibt. Sie verwendet die Funktion `json.load()`, um den JSON-Inhalt aus der Datei zu laden.
 
@@ -95,8 +96,11 @@ o	Task_Saved.html
 -	Datenbank.py (funktion unbekannt, und wird vielleicht gar nicht verwendet)
 
 # Reflexion
-Als Einstiegsprogrammiererin, die ausserhalb meines Studiums nur wenig Interesse an der Programmierwelt hatte, fiel es mir anfangs schwer, mich in das Projekt zu stürzen. Allerdings musste ich mich zusammenreißen, da mir nun eine zweite Chance gegeben wurde, mich in diesem Kurs zu verbessern und eine ausreichende Note zu erzielen. Anstatt mich auf Desinteresse am Modul einzustellen, versuchte ich meine Perspektive zu ändern, um tatsächlich Fortschritte zu machen. Also begann ich damit. Schnell wurde mir klar, dass mir viele grundlegende Elemente des Programmierens fehlen, wodurch mein Fortschritt äußerst langsam war. Daraufhin entschied ich, dass es am sinnvollsten wäre, den Unterricht als Aufzeichnung anzusehen, damit ich jederzeit pausieren und besser folgen konnte.
+Als Einstiegsprogrammiererin, die ausserhalb meines Studiums nur wenig Interesse an der Programmierwelt hatte, fiel es mir anfangs schwer, mich in das Projekt zu stürzen. Allerdings musste ich mich zusammenreissen, da mir nun eine zweite Chance gegeben wurde, mich in diesem Kurs zu verbessern und eine ausreichende Note zu erzielen. Anstatt mich auf Desinteresse am Modul einzustellen, versuchte ich meine Perspektive zu ändern, um tatsächlich Fortschritte zu machen. Also begann ich damit. Schnell wurde mir klar, dass mir viele grundlegende Elemente des Programmierens fehlen, wodurch mein Fortschritt äusserst langsam war. Daraufhin entschied ich, dass es am sinnvollsten wäre, den Unterricht als Aufzeichnung anzusehen, damit ich jederzeit pausieren und besser folgen konnte.
+Anfangs war mein Fortschritt schleichend und relativ mühsam, um viel verpassten Unterrichtsstoff nachzuholen. Jedoch als ich mit dem Fortschritt der Klasse und den Vorlesungen aufholen konnte, schöpfte ich neue Hoffnung für mein Projekt und begann fleissig daran zu arbeiten, so regelmässig wie ich konnte. Trotz vielen frustrierenden Fehlermeldungen und langsame Fortschritte, bekam ich Freude daran, wenn sich ein mühseliges Problem endlich löste. Dank ChatGPT konnte ich sehr viel Zeit sparen in der Error Meldung Behebung, was ich am Anfang des Projekts nicht gemacht habe. Es war sein sehr hilfreiches Tool und rettete meine Nerven. 
 Ich entschied mich für meine Projektidee aus zwei Gründen: Zum einen, weil ich persönlich davon profitieren würde, und zum anderen, weil ich bei meinem ersten Durchgang im Modul Pro2 eine eher komplizierte Projektidee gewählt hatte. Dieses Mal wollte ich mit einer einfachen, aber gut umgesetzten Idee zufrieden sein.
+Schlussendlich bin ich sehr zufrieden mit dem Fortschritt den ich im Pro2 Kurs machen konnte, da ich den Vergleich zu vor zwei Jahre mahcen konnte, wo meine Skills ganz klar ungenügend waren. Abgesehen von meinem Projekt, bin ich auch stolz dass ich mit viele Selbst-Disziplin und viele Fleiss meine Wissenslücken schliessen konnte und auch teilweise, sogar (ein wenig) Spass daran hatte.
+
 
 
 
