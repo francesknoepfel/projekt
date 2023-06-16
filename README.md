@@ -57,8 +57,8 @@ In app.py:
 
 In neuer_task.html:
 -	handleCategoryChange(selectElement): Diese JavaScript-Funktion wird aufgerufen, wenn sich die Auswahl der Kategorie ändert. Sie überprüft, ob die ausgewählte Kategorie "new_category" ist, und zeigt das Eingabefeld für eine neue Kategorie an, wenn dies der Fall ist.
--	ich versuchte zu umegehen javascript einzubauen, da es nicht zum Modul gehört. Jedoch sah ich schlussendlich keine andere Lösugn und mit Recherchieren und Herumprobieren was es schlussendlich machbar mit JS. Da ich das Modul Webprogrammieren bereits absolviert habe, hatte ich ausreichende Grundkenntnisse und mit Ablesen der Unterrichtsmaterialen war es schlussendlich ein Erfolg. 
-
+-	 Ich versuchte eigentlich, JavaScript nicht einzubauen,, da es nicht zum Modul gehörte. Jedoch sah ich schlussendlich keine andere Lösung und durch Recherchieren und Herumprobieren stellte ich fest, dass es letztendlich mit JS machbar war. Da ich das Modul Webprogrammieren bereits absolviert hatte, verfügte ich über ausreichende Grundkenntnisse, und mit dem Lesen der Unterrichtsmaterialien war es letztendlich ein Erfolg.
+-	
 In datenbank.py:
 -	`read(file_name)`: Diese Funktion liest den Inhalt einer JSON-Datei und gibt ihn als Liste zurück. Wenn die Datei nicht existiert oder leer ist, wird eine leere Liste zurückgegeben. Die Funktion nimmt den Parameter `file_name` entgegen, der den Pfad zur JSON-Datei angibt. Sie verwendet die Funktion `json.load()`, um den JSON-Inhalt aus der Datei zu laden.
 
